@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="sayan"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2020-10-16 02:28:51 "/>
+        <attribute name="saved" value="2020-10-16 03:20:52 "/>
         <attribute name="created" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjExOjUxOjU5ICI7Mjc0Ng=="/>
-        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAyOjI4OjUxICI7MTE7Mjg5OQ=="/>
+        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAzOjIwOjUyICI7MTc7Mjg5OQ=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -30,38 +30,45 @@
             <assign variable="quoto" expression="0"/>
             <assign variable="resto" expression="0"/>
             <assign variable="appoggioF2" expression="abs(f2)"/>
-            <if expression="f2 != 0">
+            <if expression="f1 == 0 &amp;&amp; f2 == 0">
                 <then>
-                    <if expression="appoggioF2 &lt; abs(f1)">
-                        <then>
-                            <assign variable="quoto" expression="1"/>
-                            <while expression="appoggioF2 &lt; abs(f1)">
-                                <assign variable="appoggioF2" expression="appoggioF2 + abs(f2)"/>
-                                <assign variable="quoto" expression="quoto + 1"/>
-                            </while>
-                        </then>
-                        <else/>
-                    </if>
-                    <if expression="appoggioF2 &gt; abs(f1)&#13;&#10;&amp;&amp; abs(f1) != 0">
-                        <then>
-                            <assign variable="quoto" expression="quoto - 1"/>
-                            <assign variable="appoggioF2" expression="appoggioF2 - abs(f2)"/>
-                            <assign variable="resto" expression="abs(f1) - appoggioF2"/>
-                        </then>
-                        <else/>
-                    </if>
-                    <if expression="Sgn(f1) != Sgn(f2)">
-                        <then>
-                            <comment text="Va qui anche quando f1 &#232; 0 perch&#233; Sgn(0) da 0 &#13;&#10;e non 1 come nei numeri positivi,&#13;&#10;poich&#233; comunque il quoto sar&#224; sempre 0 ( 0 * -1 )&#13;&#10;non faccio ulteriori controlli per questo caso specifico."/>
-                            <assign variable="quoto" expression="quoto * -1"/>
-                        </then>
-                        <else/>
-                    </if>
-                    <output expression="&quot;Quoto: &quot; &amp; quoto" newline="True"/>
-                    <output expression="&quot;Resto: &quot; &amp; resto" newline="True"/>
+                    <output expression="&quot;Indefinito&quot;" newline="True"/>
                 </then>
                 <else>
-                    <output expression="&quot;Non puoi dividere per 0!!!&quot;" newline="True"/>
+                    <if expression="f2 != 0">
+                        <then>
+                            <if expression="appoggioF2 &lt;= abs(f1)">
+                                <then>
+                                    <assign variable="quoto" expression="1"/>
+                                    <while expression="appoggioF2 &lt; abs(f1)">
+                                        <assign variable="appoggioF2" expression="appoggioF2 + abs(f2)"/>
+                                        <assign variable="quoto" expression="quoto + 1"/>
+                                    </while>
+                                </then>
+                                <else/>
+                            </if>
+                            <if expression="appoggioF2 &gt; abs(f1)&#13;&#10;&amp;&amp; abs(f1) != 0">
+                                <then>
+                                    <assign variable="quoto" expression="quoto - 1"/>
+                                    <assign variable="appoggioF2" expression="appoggioF2 - abs(f2)"/>
+                                    <assign variable="resto" expression="abs(f1) - appoggioF2"/>
+                                </then>
+                                <else/>
+                            </if>
+                            <if expression="Sgn(f1) != Sgn(f2)">
+                                <then>
+                                    <comment text="Va qui anche quando f1 &#232; 0 &#13;&#10;perch&#233; Sgn(0) da 0 &#13;&#10;e non 1 come nei numeri positivi.&#13;&#10;&#13;&#10;Poich&#233; il quoto sar&#224; sempre 0&#13;&#10;non faccio ulteriori controlli per questo caso specifico."/>
+                                    <assign variable="quoto" expression="quoto * -1"/>
+                                </then>
+                                <else/>
+                            </if>
+                            <output expression="&quot;Quoto: &quot; &amp; quoto" newline="True"/>
+                            <output expression="&quot;Resto: &quot; &amp; resto" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Non puoi dividere per 0!!!&quot;" newline="True"/>
+                        </else>
+                    </if>
                 </else>
             </if>
         </body>

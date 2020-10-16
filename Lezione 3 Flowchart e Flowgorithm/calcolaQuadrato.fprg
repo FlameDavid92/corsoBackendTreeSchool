@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="sayan"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-10-16 03:02:07 "/>
+        <attribute name="created" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAyOjQ5OjQ1ICI7Mjc0OA=="/>
+        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAzOjAyOjA3ICI7MjsyODQ1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="a" type="Integer" array="False" size=""/>
+            <input variable="a"/>
+            <output expression="calcolaQuadrato(a)" newline="True"/>
+        </body>
+    </function>
+    <function name="calcolaQuadrato" type="Integer" variable="quadrato">
+        <parameters>
+            <parameter name="n" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="quadrato" type="Integer" array="False" size=""/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="oddNum" type="Integer" array="False" size=""/>
+            <assign variable="quadrato" expression="0"/>
+            <assign variable="oddNum" expression="1"/>
+            <assign variable="i" expression="abs(n)"/>
+            <while expression="i &gt; 0">
+                <assign variable="quadrato" expression="quadrato + oddNum"/>
+                <assign variable="i" expression="i - 1"/>
+                <assign variable="oddNum" expression="oddNum + 2"/>
+            </while>
+        </body>
+    </function>
+</flowgorithm>
