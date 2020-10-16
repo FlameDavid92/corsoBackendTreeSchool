@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="sayan"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2020-10-16 02:09:41 "/>
+        <attribute name="saved" value="2020-10-16 02:16:47 "/>
         <attribute name="created" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjExOjUxOjU5ICI7Mjc0Ng=="/>
-        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAyOjA5OjQxICI7NzsyODU0"/>
+        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAyOjE2OjQ3ICI7OTsyODYw"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -18,7 +18,7 @@
             <call expression="divisione(a,b)"/>
         </body>
     </function>
-    <function name="divisione" type="Integer" variable="quoto">
+    <function name="divisione" type="None" variable="quoto">
         <parameters>
             <parameter name="f1" type="Integer" array="False"/>
             <parameter name="f2" type="Integer" array="False"/>
@@ -60,7 +60,6 @@
                     <output expression="&quot;Resto: &quot; &amp; resto" newline="True"/>
                 </then>
                 <else>
-                    <assign variable="quoto" expression="-1"/>
                     <output expression="&quot;Non puoi dividere per 0!!!&quot;" newline="True"/>
                 </else>
             </if>
