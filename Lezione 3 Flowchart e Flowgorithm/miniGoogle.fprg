@@ -4,35 +4,32 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="sayan"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2020-10-16 03:57:06 "/>
+        <attribute name="saved" value="2020-10-16 06:14:33 "/>
         <attribute name="created" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAzOjAyOjUxICI7MjczNQ=="/>
-        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAzOjU3OjA2ICI7MTE7MjkwMg=="/>
+        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjA2OjE0OjMzICI7MjE7Mjg5OQ=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <declare name="dimensione" type="Integer" array="False" size=""/>
-            <declare name="i" type="Integer" array="False" size=""/>
-            <assign variable="i" expression="0"/>
-            <declare name="find" type="Integer" array="False" size=""/>
             <input variable="dimensione"/>
-            <declare name="array" type="Integer" array="True" size="dimensione"/>
-            <call expression="inizializzaArray(array,dimensione)"/>
-            <input variable="find"/>
-            <for variable="i" start="0" end="dimensione-1" direction="inc" step="1">
-                <if expression="array[i] == find">
-                    <then>
-                        <assign variable="i" expression="dimensione+1"/>
-                    </then>
-                    <else/>
-                </if>
-            </for>
-            <if expression="i == (dimensione + 2)">
+            <if expression="dimensione &gt; 0">
                 <then>
-                    <output expression="&quot;Il numero &quot; &amp; find &amp; &quot; &#232; presente nell'array definito.&quot;" newline="True"/>
+                    <declare name="array" type="Integer" array="True" size="dimensione"/>
+                    <call expression="inizializzaArray(array,dimensione)"/>
+                    <declare name="toFind" type="Integer" array="False" size=""/>
+                    <input variable="toFind"/>
+                    <if expression="trovaNumero(array,dimensione,toFind)">
+                        <then>
+                            <output expression="&quot;Il numero &quot; &amp; toFind &amp; &quot; &#232; presente nell'array definito.&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Il numero &quot; &amp; toFind &amp; &quot; NON &#232; presente nell'array definito.&quot;" newline="True"/>
+                        </else>
+                    </if>
                 </then>
                 <else>
-                    <output expression="&quot;Il numero &quot; &amp; find &amp; &quot; NON &#232; presente nell'array definito.&quot;" newline="True"/>
+                    <output expression="&quot;La dimensione dell'array deve essere un numero maggiore di 0.&quot;" newline="True"/>
                 </else>
             </if>
         </body>
@@ -47,6 +44,33 @@
             <for variable="i" start="0" end="dimensione-1" direction="inc" step="1">
                 <input variable="array[i]"/>
             </for>
+        </body>
+    </function>
+    <function name="trovaNumero" type="Boolean" variable="ret">
+        <parameters>
+            <parameter name="array" type="Integer" array="True"/>
+            <parameter name="dimensione" type="Integer" array="False"/>
+            <parameter name="toFind" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="ret" type="Boolean" array="False" size=""/>
+            <for variable="i" start="0" end="dimensione-1" direction="inc" step="1">
+                <if expression="array[i] == toFind">
+                    <then>
+                        <assign variable="i" expression="dimensione+1"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <if expression="i == (dimensione + 2)">
+                <then>
+                    <assign variable="ret" expression="true"/>
+                </then>
+                <else>
+                    <assign variable="ret" expression="false"/>
+                </else>
+            </if>
         </body>
     </function>
 </flowgorithm>

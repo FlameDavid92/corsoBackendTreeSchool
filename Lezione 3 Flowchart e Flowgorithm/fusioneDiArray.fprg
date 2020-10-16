@@ -4,17 +4,15 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="sayan"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2020-10-16 04:13:59 "/>
+        <attribute name="saved" value="2020-10-16 06:23:39 "/>
         <attribute name="created" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAzOjAyOjUxICI7MjczNQ=="/>
-        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjA0OjEzOjU5ICI7MTQ7MjkwNg=="/>
+        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjA2OjIzOjM5ICI7MTg7MjkxMQ=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <declare name="dimensione1" type="Integer" array="False" size=""/>
             <declare name="dimensione2" type="Integer" array="False" size=""/>
-            <declare name="i" type="Integer" array="False" size=""/>
-            <declare name="find" type="Integer" array="False" size=""/>
             <input variable="dimensione1"/>
             <declare name="array1" type="Integer" array="True" size="dimensione1"/>
             <call expression="inizializzaArray(array1,dimensione1)"/>
@@ -22,13 +20,26 @@
             <declare name="array2" type="Integer" array="True" size="dimensione2"/>
             <call expression="inizializzaArray(array2,dimensione2)"/>
             <declare name="array3" type="Integer" array="True" size="dimensione1+dimensione2"/>
+            <call expression="fondiArray(array1,dimensione1,array2,dimensione2,array3)"/>
+            <call expression="stampaArray(array3, dimensione1+dimensione2)"/>
+        </body>
+    </function>
+    <function name="fondiArray" type="None" variable="">
+        <parameters>
+            <parameter name="array1" type="Integer" array="True"/>
+            <parameter name="dimensione1" type="Integer" array="False"/>
+            <parameter name="array2" type="Integer" array="True"/>
+            <parameter name="dimensione2" type="Integer" array="False"/>
+            <parameter name="array3" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
             <for variable="i" start="0" end="dimensione1-1" direction="inc" step="1">
                 <assign variable="array3[i]" expression="array1[i]"/>
             </for>
             <for variable="i" start="0" end="dimensione2-1" direction="inc" step="1">
                 <assign variable="array3[dimensione1+i]" expression="array2[i]"/>
             </for>
-            <call expression="stampaArray(array3, dimensione1+dimensione2)"/>
         </body>
     </function>
     <function name="inizializzaArray" type="None" variable="array">
@@ -52,7 +63,15 @@
             <declare name="i" type="Integer" array="False" size=""/>
             <output expression="&quot;[ &quot;" newline="False"/>
             <for variable="i" start="0" end="dimensione-1" direction="inc" step="1">
-                <output expression="array[i] &amp; &quot; &quot;" newline="False"/>
+                <output expression="array[i]" newline="False"/>
+                <if expression="i != dimensione - 1">
+                    <then>
+                        <output expression="&quot;, &quot;" newline="False"/>
+                    </then>
+                    <else>
+                        <output expression="&quot; &quot;" newline="False"/>
+                    </else>
+                </if>
             </for>
             <output expression="&quot;]&quot;" newline="False"/>
         </body>

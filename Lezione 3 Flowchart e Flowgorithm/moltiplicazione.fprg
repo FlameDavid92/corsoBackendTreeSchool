@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="sayan"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2020-10-16 12:18:40 "/>
+        <attribute name="saved" value="2020-10-16 05:57:11 "/>
         <attribute name="created" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjExOjUxOjU5ICI7Mjc0Ng=="/>
-        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjEyOjE4OjQwICI7MTsyODQ4"/>
+        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjA1OjU3OjExICI7MzsyODUz"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -27,7 +27,8 @@
             <declare name="i" type="Integer" array="False" size=""/>
             <declare name="prodotto" type="Integer" array="False" size=""/>
             <assign variable="prodotto" expression="0"/>
-            <if expression="f1 &lt; f2">
+            <comment text="Ciclo sull'intero minore in valore assoluto tra i due in input cos&#236; da poter minimizzare il numero di somme eseguite all'interno del ciclo."/>
+            <if expression="abs(f1) &lt; abs(f2)">
                 <then>
                     <for variable="i" start="1" end="abs(f1)" direction="inc" step="1">
                         <assign variable="prodotto" expression="prodotto + f2"/>
