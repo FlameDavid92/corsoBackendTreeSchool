@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="sayan"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-10-16 05:47:41 "/>
+        <attribute name="created" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjA0OjE0OjE2ICI7Mjc0MA=="/>
+        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjA1OjQ3OjQxICI7MTQ7MjkwNQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="stringa" type="String" array="False" size=""/>
+            <input variable="stringa"/>
+            <declare name="vocCons" type="Integer" array="True" size="2"/>
+            <call expression="contaVocaliEConsonanti(myLowerCase(stringa),vocCons)"/>
+            <output expression="&quot;Numero di vocali: &quot; &amp; vocCons[0]" newline="True"/>
+            <output expression="&quot;Numero di consonanti: &quot; &amp; vocCons[1]" newline="True"/>
+        </body>
+    </function>
+    <function name="contaVocaliEConsonanti" type="None" variable="">
+        <parameters>
+            <parameter name="parola" type="String" array="False"/>
+            <parameter name="vocCons" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="temp" type="String" array="False" size=""/>
+            <declare name="nVocali" type="Integer" array="False" size=""/>
+            <declare name="nConsonanti" type="Integer" array="False" size=""/>
+            <assign variable="nVocali" expression="0"/>
+            <assign variable="nConsonanti" expression="0"/>
+            <for variable="i" start="0" end="Len(parola)-1" direction="inc" step="1">
+                <assign variable="temp" expression="Char(parola,i)"/>
+                <if expression="temp == &quot;a&quot; || temp== &quot;&#224;&quot; || temp == &quot;&#225;&quot; ||&#13;&#10;temp == &quot;e&quot; || temp== &quot;&#232;&quot; || temp== &quot;&#233;&quot; ||&#13;&#10;temp == &quot;i&quot; || temp == &quot;&#236;&quot; || temp == &quot;&#237;&quot; ||&#13;&#10;temp == &quot;o&quot; || temp == &quot;&#242;&quot; || temp == &quot;&#243;&quot; ||&#13;&#10;temp == &quot;u&quot; || temp == &quot;&#249;&quot; || temp == &quot;&#250;&quot;">
+                    <then>
+                        <assign variable="nVocali" expression="nVocali + 1"/>
+                    </then>
+                    <else>
+                        <if expression="temp == &quot;b&quot; || temp == &quot;c&quot; || temp == &quot;d&quot; || &#13;&#10;temp == &quot;f&quot; || temp == &quot;g&quot; || temp == &quot;h&quot; || &#13;&#10;temp == &quot;j&quot; || temp == &quot;k&quot; || temp == &quot;l&quot; ||&#13;&#10;temp == &quot;m&quot; || temp == &quot;n&quot; || temp == &quot;p&quot; ||&#13;&#10;temp == &quot;q&quot; || temp == &quot;r&quot; || temp == &quot;s&quot; || &#13;&#10;temp == &quot;t&quot; || temp == &quot;v&quot; || temp == &quot;w&quot; || &#13;&#10;temp == &quot;x&quot; || temp == &quot;y&quot; || temp == &quot;z&quot;">
+                            <then>
+                                <assign variable="nConsonanti" expression="nConsonanti + 1"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </else>
+                </if>
+            </for>
+            <assign variable="vocCons[0]" expression="nVocali"/>
+            <assign variable="vocCons[1]" expression="nConsonanti"/>
+        </body>
+    </function>
+    <function name="myLowerCase" type="String" variable="ret">
+        <parameters>
+            <parameter name="stringa" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="ret" type="String" array="False" size=""/>
+            <assign variable="ret" expression="&quot;&quot;"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="temp" type="String" array="False" size=""/>
+            <declare name="tempCode" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="Len(stringa)-1" direction="inc" step="1">
+                <assign variable="temp" expression="Char(stringa,i)"/>
+                <assign variable="tempCode" expression="toCode(temp)"/>
+                <if expression="(tempCode &gt;= 65 &amp;&amp; tempCode &lt;= 90) ||&#13;&#10;(tempCode &gt;= 192 &amp;&amp; tempCode &lt;= 221)">
+                    <then>
+                        <assign variable="ret" expression="ret &amp; toChar(tempCode+32)"/>
+                    </then>
+                    <else>
+                        <assign variable="ret" expression="ret &amp; temp"/>
+                    </else>
+                </if>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
