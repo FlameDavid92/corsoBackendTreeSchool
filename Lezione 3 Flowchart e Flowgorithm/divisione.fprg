@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="sayan"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-10-16 02:09:41 "/>
+        <attribute name="created" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjExOjUxOjU5ICI7Mjc0Ng=="/>
+        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAyOjA5OjQxICI7NzsyODU0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="a" type="Integer" array="False" size=""/>
+            <declare name="b" type="Integer" array="False" size=""/>
+            <input variable="a"/>
+            <input variable="b"/>
+            <call expression="divisione(a,b)"/>
+        </body>
+    </function>
+    <function name="divisione" type="Integer" variable="quoto">
+        <parameters>
+            <parameter name="f1" type="Integer" array="False"/>
+            <parameter name="f2" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="quoto" type="Integer" array="False" size=""/>
+            <declare name="resto" type="Integer" array="False" size=""/>
+            <declare name="appoggioF2" type="Integer" array="False" size=""/>
+            <assign variable="quoto" expression="0"/>
+            <assign variable="resto" expression="0"/>
+            <assign variable="appoggioF2" expression="abs(f2)"/>
+            <if expression="f2 != 0">
+                <then>
+                    <if expression="appoggioF2 &lt; abs(f1)">
+                        <then>
+                            <assign variable="quoto" expression="1"/>
+                            <while expression="appoggioF2 &lt; abs(f1)">
+                                <assign variable="appoggioF2" expression="appoggioF2 + abs(f2)"/>
+                                <assign variable="quoto" expression="quoto + 1"/>
+                            </while>
+                        </then>
+                        <else/>
+                    </if>
+                    <if expression="appoggioF2 &gt; abs(f1)&#13;&#10;&amp;&amp; abs(f1) != 0">
+                        <then>
+                            <assign variable="quoto" expression="quoto - 1"/>
+                            <assign variable="appoggioF2" expression="appoggioF2 - abs(f2)"/>
+                            <assign variable="resto" expression="abs(f1) - appoggioF2"/>
+                        </then>
+                        <else/>
+                    </if>
+                    <if expression="Sgn(f1) != Sgn(f2)">
+                        <then>
+                            <assign variable="quoto" expression="quoto * -1"/>
+                        </then>
+                        <else/>
+                    </if>
+                    <output expression="&quot;Quoto: &quot; &amp; quoto" newline="True"/>
+                    <output expression="&quot;Resto: &quot; &amp; resto" newline="True"/>
+                </then>
+                <else>
+                    <assign variable="quoto" expression="-1"/>
+                    <output expression="&quot;Non puoi dividere per 0!!!&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

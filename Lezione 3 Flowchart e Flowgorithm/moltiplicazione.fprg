@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="sayan"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-10-16 12:18:40 "/>
+        <attribute name="created" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjExOjUxOjU5ICI7Mjc0Ng=="/>
+        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjEyOjE4OjQwICI7MTsyODQ4"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="a" type="Integer" array="False" size=""/>
+            <declare name="b" type="Integer" array="False" size=""/>
+            <input variable="a"/>
+            <input variable="b"/>
+            <output expression="moltiplicazione(a,b)" newline="True"/>
+        </body>
+    </function>
+    <function name="moltiplicazione" type="Integer" variable="prodotto">
+        <parameters>
+            <parameter name="f1" type="Integer" array="False"/>
+            <parameter name="f2" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="prodotto" type="Integer" array="False" size=""/>
+            <assign variable="prodotto" expression="0"/>
+            <if expression="f1 &lt; f2">
+                <then>
+                    <for variable="i" start="1" end="abs(f1)" direction="inc" step="1">
+                        <assign variable="prodotto" expression="prodotto + f2"/>
+                    </for>
+                    <if expression="f1 &lt; 0">
+                        <then>
+                            <assign variable="prodotto" expression="prodotto * -1"/>
+                        </then>
+                        <else/>
+                    </if>
+                </then>
+                <else>
+                    <for variable="i" start="1" end="abs(f2)" direction="inc" step="1">
+                        <assign variable="prodotto" expression="prodotto + f1"/>
+                    </for>
+                    <if expression="f2 &lt; 0">
+                        <then>
+                            <assign variable="prodotto" expression="prodotto * -1"/>
+                        </then>
+                        <else/>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
