@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="sayan"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2020-10-16 02:16:47 "/>
+        <attribute name="saved" value="2020-10-16 02:28:51 "/>
         <attribute name="created" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjExOjUxOjU5ICI7Mjc0Ng=="/>
-        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAyOjE2OjQ3ICI7OTsyODYw"/>
+        <attribute name="edited" value="c2F5YW47TEFQVE9QLTFJOUs3MUFVOzIwMjAtMTAtMTY7IjAyOjI4OjUxICI7MTE7Mjg5OQ=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -52,6 +52,7 @@
                     </if>
                     <if expression="Sgn(f1) != Sgn(f2)">
                         <then>
+                            <comment text="Va qui anche quando f1 &#232; 0 perch&#233; Sgn(0) da 0 &#13;&#10;e non 1 come nei numeri positivi,&#13;&#10;poich&#233; comunque il quoto sar&#224; sempre 0 ( 0 * -1 )&#13;&#10;non faccio ulteriori controlli per questo caso specifico."/>
                             <assign variable="quoto" expression="quoto * -1"/>
                         </then>
                         <else/>
