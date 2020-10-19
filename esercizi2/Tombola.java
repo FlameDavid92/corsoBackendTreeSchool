@@ -7,7 +7,10 @@ public class Tombola {
         int[][] cartella = {{9,27,55,70,83},{11,39,57,73,85},{5,18,34,41,62}};
         int[] estratti = {9,27,56,79,40,39,34,62,41,83,5,18,90,85,3,8,4,31,57,88};
         int[] estrattiTombola = {9,27,55,70,83,11,39,57,73,85,5,18,34,41,62,1,2,3,4,6,};
-        String resp = t.checkGame(cartella, estrattiTombola);
+        String resp = t.checkGame(cartella, estratti);
+        System.out.println(resp+"\n\n");
+
+        resp = t.checkGame(cartella, estrattiTombola);
         System.out.println(resp);
     }
 
@@ -27,6 +30,7 @@ public class Tombola {
             }
             if(righe[0] == 5 && righe[1] == 5 && righe[2] == 5) return "TOMBOLA!!";
         }
+
         int ambi = 0, terni = 0, quaterne = 0, cinquine = 0;
         for(int c : righe){
             switch (c){
