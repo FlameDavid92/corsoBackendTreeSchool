@@ -16,7 +16,7 @@ public class Anagrammi {
     static void anagrams(String a, String b) {
         /*Se le due stringhe hanno lunghezze differenti non sono anagrammi*/
         if(a.length() != b.length()){
-            System.out.println("Non anagrammi!");
+            System.out.println("Non anagrammi");
             return;
         }
         /*
@@ -38,7 +38,12 @@ public class Anagrammi {
           La complessità del secondo for è O(n) dove n è la lunghezza della stringa b (e della stringa a).
         */
         for(int j=0; j<b.length();j++){
-            countersA.put(b.charAt(j), countersA.get(b.charAt(j))-1);
+            if(countersA.get(b.charAt(j)) == 0){
+                System.out.println("Non anagrammi");
+                return;
+            }else {
+                countersA.put(b.charAt(j), countersA.get(b.charAt(j)) - 1);
+            }
         }
 
         /*Il terzo for per ogni carattere nella mappa controlla che la sua occorrenza sia a 0,
@@ -47,8 +52,9 @@ public class Anagrammi {
             allora: -se è minore di 0, b ha più occorrenze di quel carattere rispetto ad a.
                     -se è maggiore di 0,  a ha più occorrenze di quel carattere rispetto a b.
           La complessità del terzo for è O(m),
-          dove m è la dimensione massima della mappa (che è limitata dal numero di caratteri differenti delle stringhe a e b,
-          [l'if a riga 45 inserisce un ulteriore carattere ]).
+          dove m è la dimensione massima della mappa.
+          Quest'ultima è limitata dal numero di caratteri differenti nella stringa a,
+          poiché arriviamo al 3o for quando in b compaiono SOLO caratteri di a.
         */
         for (Map.Entry carattere : countersA.entrySet()) {
             if((int)carattere.getValue()  != 0){
