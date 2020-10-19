@@ -6,21 +6,21 @@ public class SommaDiagonale {
         int[][] matrice2 = {{2,0,0,1},{0,2,1,0},{0,1,2,0},{1,0,0,2}};
         SommaDiagonale sd = new SommaDiagonale();
         try {
-            int resp = sd.sommaDiag(matrice,0); /*0 => SxDx*/
+            int resp = sd.sommaDiag(matrice,true); /*0 => SxDx*/
             System.out.println(resp);
-            resp = sd.sommaDiag(matrice,1); /*1 => DxSx*/
+            resp = sd.sommaDiag(matrice,false); /*1 => DxSx*/
             System.out.println(resp+"\n");
 
-            int resp2 = sd.sommaDiag(matrice2,0); /*0 => SxDx*/
+            int resp2 = sd.sommaDiag(matrice2,true); /*0 => SxDx*/
             System.out.println(resp2);
-            resp2 = sd.sommaDiag(matrice2,1); /*1 => DxSx*/
+            resp2 = sd.sommaDiag(matrice2,false); /*1 => DxSx*/
             System.out.println(resp2);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private int sommaDiag(int[][] matrice, int op) throws Exception {
+    private int sommaDiag(int[][] matrice, boolean op) throws Exception {
         int dimensioneRighe = matrice.length;
         int dimensioneColonne = matrice[0].length;
         if(dimensioneRighe != dimensioneColonne){
@@ -28,14 +28,14 @@ public class SommaDiagonale {
         }
         int ret = 0;
         int currentCol;
-        if(op == 0){
+        if(op){
             currentCol = 0;
         }else{
             currentCol = dimensioneRighe-1;
         }
         for(int i=0; i<dimensioneRighe; i++){
             ret += matrice[i][currentCol];
-            if(op == 0){
+            if(op){
                 currentCol++;
             }else{
                 currentCol--;
