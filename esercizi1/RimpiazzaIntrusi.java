@@ -1,4 +1,4 @@
-package it.corsobackendtree;
+package it.corsobackendtree.esercizi1;
 import java.util.Scanner;
  
 public class RimpiazzaIntrusi {

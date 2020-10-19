@@ -1,4 +1,4 @@
-package it.corsobackendtree;
+package it.corsobackendtree.esercizi1;
 
 public class DrawWithChars {
     public static void main(String[] args){

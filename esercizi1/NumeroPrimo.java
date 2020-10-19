@@ -1,4 +1,4 @@
-package it.corsobackendtree;
+package it.corsobackendtree.esercizi1;
 
 public class NumeroPrimo {
     public static void main(String[] args) {
