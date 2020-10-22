@@ -22,10 +22,13 @@ public class Tombola {
             for(int j=0; j<5; j++){ /*ciclo sulle 5 colonne della cartella e controllo le 3 righe*/
                 if(estratti[i] == cartella[0][j]){
                     righe[0]++;
+                    break;
                 }else if(estratti[i] == cartella[1][j]){
                     righe[1]++;
+                    break;
                 }else if(estratti[i] == cartella[2][j]){
                     righe[2]++;
+                    break;
                 }
             }
             if(righe[0] == 5 && righe[1] == 5 && righe[2] == 5) return "TOMBOLA!!";
