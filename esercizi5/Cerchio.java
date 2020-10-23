@@ -25,7 +25,11 @@ public class Cerchio {
         return this.colore;
     }
     public void setColore(int r, int g, int b){
-        this.colore = new Colore(r,g,b);
+        try {
+            this.colore = new Colore(r,g,b);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args){
