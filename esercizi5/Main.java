@@ -2,10 +2,8 @@ package it.corsobackendtree.esercizi5;
 
 public class Main {
     public static void main(String[] args){
-        testContatore();
-        System.out.println("---------");
-        testCerchio();
-        System.out.println("---------");
+        //testContatore();
+        //testCerchio();
         testQuadrato();
     }
     private static void testContatore(){
