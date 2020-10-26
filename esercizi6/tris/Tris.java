@@ -1,16 +1,16 @@
-package it.corsobackendtree.esercizi6;
+package it.corsobackendtree.esercizi6.tris;
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class Tris {
-    ValoreTris[][] scacchiera;
-    int nPosizioniDisponibili;
-    String[] giocatori;
-    int[] simboloGiocatori;
-    int currentPlayer;
-    Scanner sc;
-    Random rndm;
+    private ValoreTris[][] scacchiera;
+    private int nPosizioniDisponibili;
+    private String[] giocatori;
+    private int[] simboloGiocatori;
+    private int currentPlayer;
+    private Scanner sc;
+    private Random rndm;
 
     public Tris(String nomeGiocatore1, String nomeGiocatore2, Scanner scanner) {
         this.giocatori = new String[2];

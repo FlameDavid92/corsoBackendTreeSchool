@@ -1,4 +1,4 @@
-package it.corsobackendtree.esercizi6;
+package it.corsobackendtree.esercizi6.tris;
 import java.util.Scanner;
 
 public class Main {
