@@ -57,12 +57,13 @@ public class Tris {
                 System.out.println("Scelta non valida!");
             }
         }
-        this.simboloGiocatori[0] = input;
-        this.simboloGiocatori[1] = (input == 0) ? 1 : 0;
+        this.simboloGiocatori[currentPlayer] = input;
+        this.simboloGiocatori[(currentPlayer == 0)?1:0] = (input == 0) ? 1 : 0;
     }
 
     public void gioca() {
         boolean game = true;
+        boolean newGame = false;
         while (game) {
             System.out.println("\nÈ il turno di " + giocatori[currentPlayer] + "." +
                     "\nIl tuo simbolo è " + ((this.simboloGiocatori[currentPlayer] == 0) ? "O" : "X") + ".");
@@ -84,7 +85,7 @@ public class Tris {
                     }
 
                     if (row == 999 || column == 999) {
-                        game = terminaGioco(true);
+                        newGame = terminaGioco(true);
                         break;
                     } else if (row < 3 && column < 3 && this.scacchiera[row][column] == ValoreTris.VOID) {
                         this.scacchiera[row][column] = (this.simboloGiocatori[this.currentPlayer] == 0) ? ValoreTris.O : ValoreTris.X;
@@ -96,11 +97,12 @@ public class Tris {
                 }
             }
             System.out.println("----------------------");
-            if (game) {
-                this.nPosizioniDisponibili--;
-                game = this.controllaTris();
-                this.currentPlayer = (currentPlayer == 0) ? 1 : 0;
+            if (newGame) {
+                continue;
             }
+            this.nPosizioniDisponibili--;
+            game = this.controllaTris();
+            this.currentPlayer = (currentPlayer == 0) ? 1 : 0;
         }
     }
 
