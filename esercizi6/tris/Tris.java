@@ -63,7 +63,6 @@ public class Tris {
 
     public void gioca() {
         boolean game = true;
-        boolean newGame = false;
         while (game) {
             System.out.println("\nÈ il turno di " + giocatori[currentPlayer] + "." +
                     "\nIl tuo simbolo è " + ((this.simboloGiocatori[currentPlayer] == 0) ? "O" : "X") + ".");
@@ -85,7 +84,7 @@ public class Tris {
                     }
 
                     if (row == 999 || column == 999) {
-                        newGame = terminaGioco(true);
+                        game = terminaGioco(true);
                         break;
                     } else if (row < 3 && column < 3 && this.scacchiera[row][column] == ValoreTris.VOID) {
                         this.scacchiera[row][column] = (this.simboloGiocatori[this.currentPlayer] == 0) ? ValoreTris.O : ValoreTris.X;
@@ -97,12 +96,18 @@ public class Tris {
                 }
             }
             System.out.println("----------------------");
-            if (newGame) {
-                continue;
+            if(!game){
+                System.out.println("Vuoi iniziare un nuovo gioco?" +
+                        "\nInserisci 1 per Sì, altro per No: ");
+                if (sc.nextInt() == 1) {
+                    this.inizializzaNuovoGioco();
+                    game=true;
+                }
+            }else{
+                this.nPosizioniDisponibili--;
+                game = this.controllaTris();
+                this.currentPlayer = (currentPlayer == 0) ? 1 : 0;
             }
-            this.nPosizioniDisponibili--;
-            game = this.controllaTris();
-            this.currentPlayer = (currentPlayer == 0) ? 1 : 0;
         }
     }
 
@@ -137,11 +142,6 @@ public class Tris {
     public boolean terminaGioco(boolean op) {
         if (op) System.out.println("Hai terminato il gioco senza completarlo!");
         printGame();
-        System.out.println("Vuoi iniziare un nuovo gioco?" +
-                "\nInserisci 1 per Sì, altro per No: ");
-        if (sc.nextInt() == 1) {
-            this.inizializzaNuovoGioco();
-            return true;
-        } else return false;
+        return false;
     }
 }
