@@ -125,11 +125,16 @@ public class DittaRiparazioni {
     }
 
     public void concludiRiparazione(Tecnico t){
+
+        /*tecnico per nome e non già come oggetto!!!*/
+
         Riparazione r = t.getIncaricoAttuale();
-        t.concludiIncarico();
-        r.concludi();
-        this.aggiungiRiparazioneCompletata(r);
-        this.cancellazioni++;
+        if(r != null){
+            t.concludiIncarico();
+            r.concludi();
+            this.aggiungiRiparazioneCompletata(r);
+            this.cancellazioni++;
+        }
     }
 
     public void clearInAttesa(){
