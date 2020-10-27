@@ -1,4 +1,5 @@
 package it.corsobackendtree.esercizi7.classificaseriea;
 
-public class ClassificaSerieA {
+public class Classifica {
+
 }

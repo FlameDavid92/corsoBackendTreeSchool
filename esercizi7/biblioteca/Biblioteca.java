@@ -19,6 +19,8 @@ public class Biblioteca {
 
     public int[] getIndiciLibriOrdinati(){
         Arrays.sort(this.libri);
+
+        /* ritorno una copia della lista */
         int[] retArray = new int[this.libri.length];
         for(int i=0; i<retArray.length;i++){
             retArray[i] = this.libri[i];

@@ -19,7 +19,7 @@ public class ListaOrdinata {
             clean();
         }
         /*Se non ho più spazio nell'array per l'inserimento, raddoppio lo spazio disponibile.*/
-        if(this.lastFreeIndex == this.arrayOrdinato.length-1){
+        if (this.lastFreeIndex == this.arrayOrdinato.length - 1) {
             doubleSpace();
         }
         /*------*/
@@ -52,7 +52,9 @@ public class ListaOrdinata {
 
     public int indexOf(int x) {
         /*Eseguo un clean così non ho null interni.*/
-        clean();
+        if (this.cancellazioni != 0) {
+            clean();
+        }
         return ricercaBinaria(this.arrayOrdinato,
                 0, this.lastFreeIndex - 1, x);
     }
