@@ -106,7 +106,6 @@ public class ListaOrdinata {
         }
         this.arrayOrdinato = newArrayOrdinato;
         this.lastFreeIndex = j;
-        length = this.arrayOrdinato.length;
     }
 
     public void doubleSpace() {
