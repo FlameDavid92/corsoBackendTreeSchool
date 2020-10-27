@@ -64,7 +64,7 @@ public class DittaRiparazioni {
         return inAttesa[indMax];
     }
 
-    public void aggiungiTecnico(Tecnico tc){
+    public boolean aggiungiTecnico(Tecnico tc){
         /*se c'è spazio!!!*/
         if(lastFreeIndexInAtt >= this.inAttesa.length){
             Tecnico[] newTecnici = new Tecnico[this.tecnici.length*2];
@@ -74,8 +74,16 @@ public class DittaRiparazioni {
             this.lastFreeIndexTec = this.tecnici.length;
             this.tecnici = newTecnici;
         }
+        /* Controllo se il tecnico è già presente */
+        for(int i=0; i<lastFreeIndexTec; i++){
+            if(tc.getNome() == tecnici[i].getNome()){
+                System.out.println("Tecnico già presente!");
+                return false;
+            }
+        }
         this.tecnici[lastFreeIndexTec] = tc;
         lastFreeIndexTec++;
+        return true;
     }
 
     public boolean assegnaIncarico(){
@@ -135,5 +143,6 @@ public class DittaRiparazioni {
         }
         this.lastFreeIndexInAtt = j;
         this.inAttesa = newInAttesa;
+        this.cancellazioni = 0;
     }
 }
