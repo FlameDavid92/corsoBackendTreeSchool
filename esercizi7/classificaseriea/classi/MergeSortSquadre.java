@@ -33,19 +33,19 @@ class MergeSortSquadre {
             boolean left = false;
 
             if (L[i].getPunteggio() < R[j].getPunteggio()) {
-                left = true;
+                left = false;
             } else if (L[i].getPunteggio() == R[j].getPunteggio()) {
                 /*controllo la differenza reti generale*/
-                if ((L[i].getGolFatti() - L[i].getGolSubiti()) > (R[j].getGolFatti() - R[j].getGolSubiti())) {
-                    left = true;
+                if ((L[i].getGolFatti() - L[i].getGolSubiti()) < (R[j].getGolFatti() - R[j].getGolSubiti())) {
+                    left = false;
                 } else if ((L[i].getGolFatti() - L[i].getGolSubiti()) == (R[j].getGolFatti() - R[j].getGolSubiti())) {
                     /* è uguale pure la differenza reti -_-' */
                     Random rdm = new Random();
                     int sorteggio = rdm.nextInt(2);
-                    if(sorteggio == 0) left=true;
-                    else left = false;
-                }else left = false;
-            }else left = false;
+                    if(sorteggio == 0) left=false;
+                    else left = true;
+                }else left = true;
+            }else left = true;
 
             if(left){
                 arr[k] = L[i];

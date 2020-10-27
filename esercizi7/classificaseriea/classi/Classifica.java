@@ -28,6 +28,16 @@ public class Classifica {
         squadraCasa.setGolSubiti(golOspite);
     }
 
+    public Squadra getSquadra(String nomeSquadra){
+        for(int i=0; i<this.serieA.length; i++){
+            if(this.serieA[i].getNome().toLowerCase().equals(nomeSquadra.toLowerCase())){
+                return this.serieA[i];
+            }
+        }
+        System.out.println("Squadra non presente!");
+        return null;
+    }
+
     public Squadra[] getClassifica() {
         if (this.ordinata) return this.serieA;
         else {
@@ -36,7 +46,7 @@ public class Classifica {
         }
     }
 
-    public void ordinaClassifica() {
+    private void ordinaClassifica() {
         /* ordina in base al punteggio della squadra */
         MergeSortSquadre.sort(this.serieA, 0, this.serieA.length - 1);
         this.ordinata = true;
@@ -60,6 +70,7 @@ public class Classifica {
             if (sq.getGolFatti() == this.serieA[i].getGolFatti()) {
                 ret[j] = this.serieA[i];
                 j++;
+                if(j == dim) break;
             }
         }
         return ret;
@@ -83,6 +94,7 @@ public class Classifica {
             if (sq.getGolFatti() == this.serieA[i].getGolFatti()) {
                 ret[j] = this.serieA[i];
                 j++;
+                if(j == dim) break;
             }
         }
         return ret;
