@@ -111,7 +111,7 @@ public class ListaOrdinata {
     public void doubleSpace() {
         int length = this.arrayOrdinato.length;
         Integer[] newArrayOrdinato = new Integer[length * 2];
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < lastFreeIndex; i++) {
             newArrayOrdinato[i] = this.arrayOrdinato[i];
         }
         this.lastFreeIndex = length;
