@@ -4,9 +4,8 @@ public class Automobile extends Veicolo{
     private int numeroPorte;
 
     public Automobile(String targa, int numeroPorte, int numeroPosti){
-        this.targa = targa;
+        super(targa, numeroPosti);
         this.numeroPorte = numeroPorte;
-        this.numeroPosti = numeroPosti;
     }
 
     public int getNumeroPorte(){

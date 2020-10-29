@@ -3,7 +3,7 @@ package it.corsobackendtree.esercizi8.formageometrica.classi;
 public class Quadrato extends FormaGeometrica{
     private int lato;
     public Quadrato(int lato){
-        this.tipo = "quadrato";
+        super("quadrato");
         this.lato = lato;
     }
 

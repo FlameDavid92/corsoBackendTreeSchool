@@ -4,9 +4,8 @@ public class Autocarro extends Veicolo {
     private int capacitaMassimaInQuintali;
 
     public Autocarro(String targa, int capacitaMassimaInQuintali, int numeroPosti){
-        this.targa = targa;
+        super(targa,numeroPosti);
         this.capacitaMassimaInQuintali = capacitaMassimaInQuintali;
-        this.numeroPosti = numeroPosti;
     }
 
     public int getCapacitaMassimaInQuintali(){

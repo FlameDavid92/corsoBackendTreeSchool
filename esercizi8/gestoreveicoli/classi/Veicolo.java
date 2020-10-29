@@ -6,6 +6,11 @@ public class Veicolo {
     protected String modello;
     protected int numeroPosti;
 
+    public Veicolo(String targa, int numeroPosti){
+        this.targa = targa;
+        this.numeroPosti = numeroPosti;
+    }
+
     public String getTarga(){
         return this.targa;
     }
