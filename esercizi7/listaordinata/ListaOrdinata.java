@@ -14,25 +14,17 @@ public class ListaOrdinata {
         if (this.lastFreeIndex == this.arrayOrdinato.length - 1) {
             doubleSpace();
         }
-        /*------*/
-        int temp = -1;
-        boolean indexFound = false;
-        for (int i = 0; i < lastFreeIndex + 1; i++) {
-            if (!indexFound && i < lastFreeIndex && this.arrayOrdinato[i] == null) {
-                continue;
-            } else if (!indexFound && i == lastFreeIndex && this.arrayOrdinato[i] == null) {
-                this.arrayOrdinato[i] = x;
-                indexFound = true;
-                break;
-            } else if (!indexFound && x < this.arrayOrdinato[i]) {
-                temp = this.arrayOrdinato[i];
-                this.arrayOrdinato[i] = x;
-                indexFound = true;
-            } else if (indexFound) {
-                if (this.arrayOrdinato[i] == null) {
-                    this.arrayOrdinato[i] = temp;
-                    break;
-                } else {
+        int index = 0;
+        if(lastFreeIndex > 0 ) index = indexOfInsert(x);
+
+        if(index == lastFreeIndex){
+            this.arrayOrdinato[index] = x;
+        }else{
+            int temp = this.arrayOrdinato[index];
+            this.arrayOrdinato[index] = x;
+            for (int i = index+1; i < lastFreeIndex+1; i++) {
+                if (i == lastFreeIndex) this.arrayOrdinato[i] = temp;
+                else{
                     int temp2 = this.arrayOrdinato[i];
                     this.arrayOrdinato[i] = temp;
                     temp = temp2;
@@ -57,6 +49,24 @@ public class ListaOrdinata {
             return ricercaBinaria(arrayOrdinato, ((start + end) / 2) + 1, end, toFind);
         } else {
             return ricercaBinaria(arrayOrdinato, start, ((start + end) / 2) - 1, toFind);
+        }
+    }
+
+    public int indexOfInsert(int x) {
+        /*Eseguo un clean così non ho null interni.*/
+        return findIndexInsert(this.arrayOrdinato,
+                0, this.lastFreeIndex - 1, x);
+    }
+    private int findIndexInsert(Integer[] arrayOrdinato, int start, int end, int toFind) {
+        if ((end-start) == 0) {
+            if(toFind < arrayOrdinato[start]) return start;
+            else return start+1;
+        } else if (toFind == arrayOrdinato[(start + end) / 2]) {
+            return (start + end) / 2;
+        } else if (toFind > arrayOrdinato[(start + end) / 2]) {
+            return findIndexInsert(arrayOrdinato,((start + end) / 2) + 1, end, toFind);
+        } else {
+            return findIndexInsert(arrayOrdinato, start, ((start + end) / 2) - 1, toFind);
         }
     }
 
