@@ -35,7 +35,6 @@ public class ListaOrdinata {
     }
 
     public int indexOf(int x) {
-        /*Eseguo un clean così non ho null interni.*/
         return ricercaBinaria(this.arrayOrdinato,
                 0, this.lastFreeIndex - 1, x);
     }
@@ -53,7 +52,6 @@ public class ListaOrdinata {
     }
 
     public int indexOfInsert(int x) {
-        /*Eseguo un clean così non ho null interni.*/
         return findIndexInsert(this.arrayOrdinato,
                 0, this.lastFreeIndex - 1, x);
     }
