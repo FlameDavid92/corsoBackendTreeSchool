@@ -5,9 +5,15 @@ import it.corsobackendtree.esercizi7.classificaseriea.classi.Giocatore;
 import it.corsobackendtree.esercizi7.classificaseriea.classi.Squadra;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        //testSemplice();
+        testPrimaGiornata();
+    }
+
+    private static Classifica init(){
         String[] nomi = new String[]{ "Juventus","Milan","Inter","Roma",
                 "Napoli","Lazio","Atalanta","Genoa","Fiorentina",
                 "Sampdoria","Verona","Torino","Sassuolo","Cagliari",
@@ -17,8 +23,18 @@ public class Main {
         for(int i=0; i<20; i++){
             squadreSerieA[i] = new Squadra(nomi[i], new Giocatore[]{});
         }
-        Classifica classificaSerieA = new Classifica(squadreSerieA);
+        return new Classifica(squadreSerieA);
+    }
 
+    private static void printClassifica(Classifica classificaSerieA){
+        Squadra[] squadre = classificaSerieA.getClassifica();
+        for(int i=0; i<squadre.length; i++){
+            System.out.println((i+1)+"a "+squadre[i]);
+        }
+    }
+
+    private static void testSemplice(){
+        Classifica classificaSerieA =init();
         Squadra juventus = classificaSerieA.getSquadra("Juventus");
         Squadra roma = classificaSerieA.getSquadra("Roma");
         classificaSerieA.esitoPartita(juventus,1,roma,3);
@@ -31,7 +47,23 @@ public class Main {
         for(int i=0; i<squadre.length; i++){
             System.out.println((i+1)+"a "+squadre[i]);
         }
-
+        printClassifica(classificaSerieA);
     }
 
+    private static void testPrimaGiornata(){
+        Scanner sc = new Scanner(System.in);
+        Classifica classificaSerieA =init();
+        Squadra[] classifica = classificaSerieA.getClassifica();
+        int tempGolCasa;
+        int tempGolOspite;
+        for(int i=0; i<20; i+=2){
+            System.out.println("Inserisci il risultato per "+classifica[i].getNome()+"-"+classifica[i+1].getNome());
+            System.out.println(classifica[i].getNome()+": ");
+            tempGolCasa = sc.nextInt();
+            System.out.println(classifica[i+1].getNome()+": ");
+            tempGolOspite = sc.nextInt();
+            classificaSerieA.esitoPartita(classifica[i],tempGolCasa,classifica[i+1],tempGolOspite);
+        }
+        printClassifica(classificaSerieA);
+    }
 }
