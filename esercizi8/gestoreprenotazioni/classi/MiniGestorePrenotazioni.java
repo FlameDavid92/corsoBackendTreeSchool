@@ -118,11 +118,12 @@ public class MiniGestorePrenotazioni {
                 if (postiLiberati > 0 &&
                         prenotazioniEsterno[j] instanceof PrenotazioneSingola &&
                         ((PrenotazioneSingola) prenotazioniEsterno[j]).getPreferenza() == Preferenza.INTERNO) {
-
                     postiLiberati--;
                     Prenotazione temp = prenotazioniEsterno[j];
                     terminaPrenotazione(prenotazioniEsterno[j]);
                     prenotazioniInterno[lastFreeIndexInterni] = temp;
+                    lastFreeIndexInterni++;
+                    j--;
                 }
             }
 
@@ -145,6 +146,8 @@ public class MiniGestorePrenotazioni {
                     Prenotazione temp = prenotazioniInterno[j];
                     terminaPrenotazione(prenotazioniInterno[j]);
                     prenotazioniEsterno[lastFreeIndexEsterni] = temp;
+                    lastFreeIndexEsterni++;
+                    j--;
                 }
             }
         }
