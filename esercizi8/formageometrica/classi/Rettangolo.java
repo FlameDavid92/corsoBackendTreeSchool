@@ -4,6 +4,10 @@ public class Rettangolo extends FormaGeometrica{
     private int base;
     private int altezza;
 
+    public Rettangolo(){
+        this(5, 6);
+    }
+
     public Rettangolo(int base, int altezza){
         super("rettangolo");
         this.base = base;

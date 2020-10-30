@@ -6,7 +6,8 @@ import it.corsobackendtree.esercizi8.formageometrica.classi.Rettangolo;
 public class Main {
     public static void main(String[] args){
         Quadrato quadrato = new Quadrato(5);
-        Rettangolo rettangolo = new Rettangolo(5,6);
+        //Rettangolo rettangolo = new Rettangolo(5,6);
+        Rettangolo rettangolo = new Rettangolo();
         System.out.println(
                 "Tipo: "+quadrato.toString()+"\n" +
                 "Lato: "+quadrato.getLato()+"\n"+
