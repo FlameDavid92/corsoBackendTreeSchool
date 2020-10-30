@@ -71,11 +71,15 @@ public class Main {
         Prenotazione p2 = new PrenotazioneSingola("23", Preferenza.INTERNO);
         PrenotazioneGruppo p3 = new PrenotazioneGruppo("56",2);
         Prenotazione p4 = new PrenotazioneSingola("24", Preferenza.INTERNO);
+        Prenotazione p5 = new PrenotazioneSingola("37", Preferenza.INTERNO);
 
-        System.out.println(miniGestorePrenotazioni.prenota(p1));
-        System.out.println(miniGestorePrenotazioni.prenota(p2));
+        System.out.println(miniGestorePrenotazioni.prenota(p1)); //la preferenza di p1 verrà rispettata
+        System.out.println(miniGestorePrenotazioni.prenota(p2)); //la preferenza di p2 verrà rispettata
+        /*p3 verrà messa all'interno perché se sono disponibili posti interni la preferenza per i gruppi è all'interno*/
         System.out.println(miniGestorePrenotazioni.prenota(p3));
+        /*p4 e p5 verranno messe all'esterno perché ho già tutti i posti occupati all'interno*/
         System.out.println(miniGestorePrenotazioni.prenota(p4));
+        System.out.println(miniGestorePrenotazioni.prenota(p5));
 
         System.out.println("Prenotazioni interno: "+Arrays.toString(miniGestorePrenotazioni.prenotazioniAttualiInterno()));
         System.out.println("Prenotazioni esterno: "+Arrays.toString(miniGestorePrenotazioni.prenotazioniAttualiEsterno()));
@@ -84,6 +88,5 @@ public class Main {
         System.out.println("-----");
         System.out.println("Prenotazioni interno: "+Arrays.toString(miniGestorePrenotazioni.prenotazioniAttualiInterno()));
         System.out.println("Prenotazioni esterno: "+Arrays.toString(miniGestorePrenotazioni.prenotazioniAttualiEsterno()));
-
     }
 }

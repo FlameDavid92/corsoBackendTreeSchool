@@ -109,7 +109,7 @@ public class MiniGestorePrenotazioni {
             interniImpegnati -= prenotazioniInterno[index].getNumeroPosti();
             for (int i = index; i < lastFreeIndexInterni; i++) {
                 if (i == lastFreeIndexInterni - 1) prenotazioniInterno[i] = null;
-                prenotazioniInterno[i] = prenotazioniInterno[i + 1];
+                else prenotazioniInterno[i] = prenotazioniInterno[i + 1];
             }
             lastFreeIndexInterni--;
 
@@ -131,7 +131,7 @@ public class MiniGestorePrenotazioni {
             esterniImpegnati -= prenotazioniEsterno[index].getNumeroPosti();
             for (int i = index; i < lastFreeIndexEsterni; i++) {
                 if (i == lastFreeIndexEsterni - 1) prenotazioniEsterno[i] = null;
-                prenotazioniEsterno[i] = prenotazioniEsterno[i + 1];
+                else prenotazioniEsterno[i] = prenotazioniEsterno[i + 1];
             }
             lastFreeIndexEsterni--;
 
