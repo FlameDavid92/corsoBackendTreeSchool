@@ -25,4 +25,9 @@ public class Prenotazione {
     public int hashCode() {
         return Objects.hash(codice);
     }
+
+    @Override
+    public String toString(){
+        return codice;
+    }
 }

@@ -1,5 +1,7 @@
 package it.corsobackendtree.esercizi8.gestoreprenotazioni.classi;
 
+import java.util.Arrays;
+
 public class MiniGestorePrenotazioni {
     private int numeroPostiInterni;
     private int numeroPostiEsterni;
@@ -63,10 +65,20 @@ public class MiniGestorePrenotazioni {
     }
 
     public Prenotazione[] prenotazioniAttualiInterno() {
+        /*Prenotazione[] ret = new Prenotazione[lastFreeIndexInterni];
+        for(int i=0;i<lastFreeIndexInterni; i++){
+            ret[i] = prenotazioniInterno[i];
+        }
+        return ret;*/
         return prenotazioniInterno;
     }
 
     public Prenotazione[] prenotazioniAttualiEsterno() {
+        /*Prenotazione[] ret = new Prenotazione[lastFreeIndexEsterni];
+        for(int i=0;i<lastFreeIndexEsterni; i++){
+            ret[i] = prenotazioniEsterno[i];
+        }
+        return ret;*/
         return prenotazioniEsterno;
     }
 
@@ -108,7 +120,7 @@ public class MiniGestorePrenotazioni {
                         ((PrenotazioneSingola) prenotazioniEsterno[j]).getPreferenza() == Preferenza.INTERNO) {
 
                     postiLiberati--;
-                    Prenotazione temp = prenotazioniInterno[j];
+                    Prenotazione temp = prenotazioniEsterno[j];
                     terminaPrenotazione(prenotazioniEsterno[j]);
                     prenotazioniInterno[lastFreeIndexInterni] = temp;
                 }
