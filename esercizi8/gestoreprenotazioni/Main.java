@@ -6,8 +6,9 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        //test1();
-        test2();
+        //test1(); /*test nella specifica*/
+        test2(); /*test PLUS se di default provate prima ad inserire i gruppi all'interno*/
+        //test3(); /*test PLUS se di default provate prima ad inserire i gruppi all'esterno*/
     }
 
     public static void test1(){
@@ -80,13 +81,78 @@ public class Main {
         /*p4 e p5 verranno messe all'esterno perché ho già tutti i posti occupati all'interno*/
         System.out.println(miniGestorePrenotazioni.prenota(p4));
         System.out.println(miniGestorePrenotazioni.prenota(p5));
+        System.out.println("-----");
 
-        System.out.println("Prenotazioni interno: "+Arrays.toString(miniGestorePrenotazioni.prenotazioniAttualiInterno()));
-        System.out.println("Prenotazioni esterno: "+Arrays.toString(miniGestorePrenotazioni.prenotazioniAttualiEsterno()));
+        Prenotazione[] prenotazioniInternoArray = miniGestorePrenotazioni.prenotazioniAttualiInterno();
+        Prenotazione[] prenotazioniEsternoArray = miniGestorePrenotazioni.prenotazioniAttualiEsterno();
+        int prenotazioniInterno=0, prenotazioniEsterno=0;
+        for (int i = 0; i < prenotazioniInternoArray.length; i++)
+            if (prenotazioniInternoArray[i] != null) {
+                prenotazioniInterno++;
+            }
+        for (int i = 0; i < prenotazioniEsternoArray.length; i++)
+            if (prenotazioniEsternoArray[i] != null) {
+                prenotazioniEsterno++;
+            }
+        System.out.println(prenotazioniInterno == 3 && prenotazioniEsterno == 2);
 
         miniGestorePrenotazioni.terminaPrenotazione(p3);
+        prenotazioniInterno=0;
+        prenotazioniEsterno=0;
+        for (int i = 0; i < prenotazioniInternoArray.length; i++)
+            if (prenotazioniInternoArray[i] != null) {
+                prenotazioniInterno++;
+            }
+        for (int i = 0; i < prenotazioniEsternoArray.length; i++)
+            if (prenotazioniEsternoArray[i] != null) {
+                prenotazioniEsterno++;
+            }
+
+        System.out.println(prenotazioniInterno == 4 && prenotazioniEsterno == 0);
+    }
+
+    public static void test3(){
+        MiniGestorePrenotazioni miniGestorePrenotazioni = new MiniGestorePrenotazioni(2, 4);
+        Prenotazione p1 = new PrenotazioneSingola("12", Preferenza.ESTERNO);
+        Prenotazione p2 = new PrenotazioneSingola("23", Preferenza.ESTERNO);
+        PrenotazioneGruppo p3 = new PrenotazioneGruppo("56",2);
+        Prenotazione p4 = new PrenotazioneSingola("24", Preferenza.ESTERNO);
+        Prenotazione p5 = new PrenotazioneSingola("37", Preferenza.ESTERNO);
+
+        System.out.println(miniGestorePrenotazioni.prenota(p1)); //la preferenza di p1 verrà rispettata
+        System.out.println(miniGestorePrenotazioni.prenota(p2)); //la preferenza di p2 verrà rispettata
+        /*p3 verrà messa all'interno perché se sono disponibili posti interni la preferenza per i gruppi è all'interno*/
+        System.out.println(miniGestorePrenotazioni.prenota(p3));
+        /*p4 e p5 verranno messe all'esterno perché ho già tutti i posti occupati all'interno*/
+        System.out.println(miniGestorePrenotazioni.prenota(p4));
+        System.out.println(miniGestorePrenotazioni.prenota(p5));
         System.out.println("-----");
-        System.out.println("Prenotazioni interno: "+Arrays.toString(miniGestorePrenotazioni.prenotazioniAttualiInterno()));
-        System.out.println("Prenotazioni esterno: "+Arrays.toString(miniGestorePrenotazioni.prenotazioniAttualiEsterno()));
+
+        Prenotazione[] prenotazioniInternoArray = miniGestorePrenotazioni.prenotazioniAttualiInterno();
+        Prenotazione[] prenotazioniEsternoArray = miniGestorePrenotazioni.prenotazioniAttualiEsterno();
+        int prenotazioniInterno=0, prenotazioniEsterno=0;
+        for (int i = 0; i < prenotazioniInternoArray.length; i++)
+            if (prenotazioniInternoArray[i] != null) {
+                prenotazioniInterno++;
+            }
+        for (int i = 0; i < prenotazioniEsternoArray.length; i++)
+            if (prenotazioniEsternoArray[i] != null) {
+                prenotazioniEsterno++;
+            }
+        System.out.println(prenotazioniInterno == 2 && prenotazioniEsterno == 3);
+
+        miniGestorePrenotazioni.terminaPrenotazione(p3);
+        prenotazioniInterno=0;
+        prenotazioniEsterno=0;
+        for (int i = 0; i < prenotazioniInternoArray.length; i++)
+            if (prenotazioniInternoArray[i] != null) {
+                prenotazioniInterno++;
+            }
+        for (int i = 0; i < prenotazioniEsternoArray.length; i++)
+            if (prenotazioniEsternoArray[i] != null) {
+                prenotazioniEsterno++;
+            }
+
+        System.out.println(prenotazioniInterno == 0 && prenotazioniEsterno == 4);
     }
 }
