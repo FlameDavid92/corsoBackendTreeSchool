@@ -1,7 +1,7 @@
 package it.corsobackendtree.esercizi9.iterabile;
 
 public class ListaDiInteri extends IterabileAbstract {
-    int[] interi;
+    private int[] interi;
 
     public ListaDiInteri(int[] interi) {
         super();

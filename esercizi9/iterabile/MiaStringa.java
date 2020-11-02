@@ -1,7 +1,7 @@
 package it.corsobackendtree.esercizi9.iterabile;
 
 public class MiaStringa extends IterabileAbstract{
-    char[] stringa;
+    private char[] stringa;
 
     public MiaStringa(String str){
         super();
