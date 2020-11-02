@@ -71,6 +71,22 @@ public abstract class Treno {
         v.escePasseggero(p);
     }
 
+    public void inStazione(int idStazioneArrivo){
+        this.frena();
+        this.entraInStazione();
+        this.apriTutteLePorte();
+        /*Fai scendere passeggeri arrivati*/
+        for(Vagone v : vagoni){
+            for(Passeggero p : v.passeggeri){
+                if(p.idStazioneArrivo == idStazioneArrivo){
+                    v.escePasseggero(p);
+                }
+            }
+        }
+        this.chiudiTutteLePorte();
+        this.parti();
+    }
+
     public int getNumPasseggeri() {
         int ret = 0;
         for (Vagone v : this.vagoni) {
@@ -82,6 +98,12 @@ public abstract class Treno {
     public void apriTutteLePorte() {
         for (Vagone v : this.vagoni) {
             v.apriPorte();
+        }
+    }
+
+    public void chiudiTutteLePorte() {
+        for (Vagone v : this.vagoni) {
+            v.chiudiPorte();
         }
     }
 }
