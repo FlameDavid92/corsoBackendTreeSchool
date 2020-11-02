@@ -12,6 +12,8 @@ public class ListaDiInteri extends ListaAbstract {
         if (o instanceof Integer) {
             lista = Arrays.copyOf(lista, lista.length + 1);
             lista[lista.length - 1] = o;
+        } else{
+            System.out.println("Non è possibile aggiungere l'elemento nella lista!");
         }
     }
 
