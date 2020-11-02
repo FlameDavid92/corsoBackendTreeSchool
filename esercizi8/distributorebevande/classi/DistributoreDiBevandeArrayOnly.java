@@ -6,39 +6,24 @@ import java.util.List;
 import java.util.Map;
 
 public class DistributoreDiBevandeArrayOnly implements DistributoreDiBevande{
-    private int maxNDiffProdotti;
-    private int maxSizeBucket;
-    private Map<String, List<Prodotto>> prodotti;
+    private Prodotto[] prodotti;
+    private int lastFreeIndex;
     private double saldo;
 
-    public DistributoreDiBevandeArrayOnly(int maxNDiffProdotti, int maxSizeBucket) {
-        this.maxNDiffProdotti = maxNDiffProdotti;
-        this.maxSizeBucket = maxSizeBucket;
-        this.prodotti = new HashMap<String, List<Prodotto>>();
+    public DistributoreDiBevandeArrayOnly(int maxNProdotti) {
+        this.prodotti = new Prodotto[maxNProdotti];
+        this.lastFreeIndex = 0;
         this.saldo = 0;
-    }
-    public DistributoreDiBevandeArrayOnly(int maxNDiffProdotti) {
-        this(maxNDiffProdotti, 10);
     }
 
     @Override
     public void caricaProdotto(Prodotto p) {
-        if (prodotti.get(p.getCodice()) == null) {
-            if (prodotti.size() <= maxNDiffProdotti) {
-                ArrayList<Prodotto> box = new ArrayList<Prodotto>();
-                box.add(p);
-                prodotti.put(p.getCodice(), box);
-            } else {
-                System.out.println("Non c'è spazio per altri box prodotto!");
-            }
+        if (lastFreeIndex != prodotti.length) {
+            prodotti[lastFreeIndex] = p;
+            lastFreeIndex++;
         } else {
-            if (prodotti.get(p.getCodice()).size() <= maxSizeBucket) {
-                prodotti.get(p.getCodice()).add(p);
-            } else{
-                System.out.println("Box prodotto pieno!");
-            }
+            System.out.println("Distributore pieno!");
         }
-
     }
 
     @Override
@@ -48,15 +33,26 @@ public class DistributoreDiBevandeArrayOnly implements DistributoreDiBevande{
 
     @Override
     public Prodotto scegliProdotto(String codice) {
-        if (prodotti.get(codice) != null && prodotti.get(codice).size() != 0) {
-            Prodotto ret = prodotti.get(codice).remove(prodotti.get(codice).size() - 1);
-            if (saldo < ret.getPrezzo()) {
-                return null;
-            } else {
-                saldo -= ret.getPrezzo();
-                return ret;
+        if(codice == null) return null;
+        for(int i=0; i<lastFreeIndex; i++){
+            if(codice.equals(prodotti[i].getCodice())){
+                Prodotto ret = prodotti[i];
+                if(ret.getPrezzo() <= saldo){
+                    saldo -= ret.getPrezzo();
+                    removeProduct(i);
+                    return ret;
+                }
             }
-        } else return null;
+        }
+        return null;
+    }
+
+    private void removeProduct(int index){
+        for(int i=index; i<lastFreeIndex; i++){
+            if(i == lastFreeIndex -1 ) prodotti[i] = null;
+            else prodotti[i] = prodotti[i+1];
+        }
+        lastFreeIndex--;
     }
 
     @Override

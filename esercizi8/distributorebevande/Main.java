@@ -4,8 +4,8 @@ import it.corsobackendtree.esercizi8.distributorebevande.classi.*;
 
 public class Main {
     public static void main(String[] args){
-        //test(false); /*versione maplist*/
-        test(true); /*versione array*/
+        //test(true); /*versione maplist*/
+        test(false); /*versione array*/
     }
 
     public static void test(boolean op){
@@ -13,8 +13,8 @@ public class Main {
         Cappuccino cappuccino = new Cappuccino(1);
 
         DistributoreDiBevande distributoreDiBevande;
-        if(op) distributoreDiBevande = new DistributoreDiBevandeArrayOnly(10);
-        else distributoreDiBevande = new DistributoreDiBevandeMapList(10);
+        if(op) distributoreDiBevande = new DistributoreDiBevandeMapList(10);
+        else distributoreDiBevande = new DistributoreDiBevandeArrayOnly(10);
 
         distributoreDiBevande.caricaProdotto(caffe);
         distributoreDiBevande.caricaProdotto(caffe);
