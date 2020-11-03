@@ -1,7 +1,6 @@
 package it.corsobackendtree.esercizi9.ferrovia.classi;
 
-import java.util.ArrayList;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class Treno {
     private UUID codice;
@@ -10,15 +9,16 @@ public abstract class Treno {
     protected boolean fermo;
     protected ArrayList<Vagone> vagoni;
 
-    public Treno(double velocita, int maxVagoni) {
+    public Treno(int maxVagoni) {
         this.codice = UUID.randomUUID();
-        this.velocitaKmH = velocita;
+        this.velocitaKmH = 0;
         this.maxVagoni = maxVagoni;
-        this.fermo = false;
+        this.fermo = true;
         this.vagoni = new ArrayList<>();
     }
 
     public void parti() {
+        this.chiudiTutteLePorte();
         this.fermo = false;
         this.velocitaKmH = 80;
     }
@@ -28,6 +28,7 @@ public abstract class Treno {
     public void entraInStazione() {
         this.fermo = true;
     }
+    public boolean isInStazione() { return this.fermo; }
 
     public void aggiungiVagone(Vagone v) {
         if (!this.fermo) {
@@ -55,32 +56,45 @@ public abstract class Treno {
         }
     }
 
-    public void entraPasseggero(Vagone v, Passeggero p) {
+    public boolean entraPasseggero(Vagone v, Passeggero p) {
         if (!this.fermo) {
             System.out.println("Un passeggero può salire solo in stazione!");
-            return;
+            return false;
         }
-        v.entraPasseggero(p);
+        return v.entraPasseggero(p);
     }
 
-    public void escePasseggero(Vagone v, Passeggero p) {
+    public boolean escePasseggero(Vagone v, Passeggero p) {
         if (!this.fermo) {
             System.out.println("Un passeggero può scendere solo in stazione!");
-            return;
+            return false;
         }
-        v.escePasseggero(p);
+        return v.escePasseggero(p);
     }
 
     public void inStazione(int idStazioneArrivo){
         this.frena();
         this.entraInStazione();
-        this.apriTutteLePorte();
+        if(!(this instanceof  FrecciaRossa)) this.apriTutteLePorte();
+
         /*Fai scendere passeggeri arrivati*/
+        Map<Vagone, ArrayList<Passeggero>> daFarUscire = new HashMap<>();
         for(Vagone v : vagoni){
-            for(Passeggero p : v.passeggeri){
+            for(Passeggero p : v.getPasseggeri()){
                 if(p.idStazioneArrivo == idStazioneArrivo){
-                    v.escePasseggero(p);
+                    if(daFarUscire.get(v) == null){
+                        ArrayList<Passeggero> passeggeriDaFarUscire = new ArrayList<>();
+                        passeggeriDaFarUscire.add(p);
+                        daFarUscire.put(v,passeggeriDaFarUscire);
+                    }else{
+                        daFarUscire.get(v).add(p);
+                    }
                 }
+            }
+        }
+        for(Vagone v : daFarUscire.keySet()){
+            for(Passeggero p : daFarUscire.get(v)){
+                v.escePasseggero(p);
             }
         }
         this.chiudiTutteLePorte();
@@ -90,7 +104,7 @@ public abstract class Treno {
     public int getNumPasseggeri() {
         int ret = 0;
         for (Vagone v : this.vagoni) {
-            ret+=v.getNumPasseggeri();
+            ret += v.getNumPasseggeri();
         }
         return ret;
     }

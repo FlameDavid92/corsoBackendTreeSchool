@@ -1,26 +1,36 @@
 package it.corsobackendtree.esercizi9.ferrovia.classi;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class Vagone {
     public static int counterIdVagone = 0;
-    int id;
-    int maxPasseggeri;
-    ArrayList<Passeggero> passeggeri;
-    ArrayList<Porta> porte;
+    private int id;
+    private int maxPasseggeri;
+    private ArrayList<Porta> porte;
+    private ArrayList<Passeggero> passeggeri;
 
     public Vagone(int maxPasseggeri, ArrayList<Porta> porte) {
         this.id = ++counterIdVagone;
         this.maxPasseggeri = maxPasseggeri;
         this.porte = porte;
+        this.passeggeri = new ArrayList<>();
     }
 
     public boolean isEmpty() {
         return passeggeri.size() == 0;
     }
 
+    public int getId(){
+        return id;
+    }
+
     public int getNumPasseggeri(){
         return passeggeri.size();
+    }
+
+    protected ArrayList<Passeggero> getPasseggeri() {
+        return passeggeri;
     }
 
     public void apriPorte(){
@@ -56,17 +66,23 @@ public abstract class Vagone {
 
     public boolean escePasseggero(Passeggero p) {
         if (passeggeri.size() > 0) {
-            for (Porta porta : porte) {
+            boolean check = false;
+            for (Iterator<Porta> iterator = porte.iterator(); iterator.hasNext();) {
+                Porta porta = iterator.next();
                 if (porta.getStatoPorta() == Porta.StatoPorta.APERTA) {
-                    if(passeggeri.remove(p)) return true;
-                    else{
-                        System.out.println("Passeggero non presente nel vagone!");
-                        return false;
-                    }
+                    check = true;
+                    break;
                 }
             }
-            System.out.println("Porte chiuse! Il passeggero non può uscire.");
-            return false;
+            if(check){
+                System.out.println("Il passeggero "+p.getNome()+" è sceso.");
+                passeggeri.remove(p);
+                return true;
+            }
+            else{
+                System.out.println("Porte chiuse! Il passeggero non può uscire.");
+                return false;
+            }
         }else{
             System.out.println("Non ci sono passeggeri!");
             return false;

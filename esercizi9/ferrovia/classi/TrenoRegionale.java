@@ -2,8 +2,8 @@ package it.corsobackendtree.esercizi9.ferrovia.classi;
 
 public class TrenoRegionale extends Treno {
     public static final int maxVagoni = 15;
-    public TrenoRegionale(int codice, double velocita) {
-        super(codice, velocita, maxVagoni);
+    public TrenoRegionale() {
+        super(maxVagoni);
     }
 
     @Override

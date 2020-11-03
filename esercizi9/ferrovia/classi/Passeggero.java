@@ -11,4 +11,10 @@ public abstract class Passeggero {
         this.idVagone = idVagone;
         this.idStazioneArrivo = idStazioneArrivo;
     }
+    public String getCodiceBiglietto() {
+        return codiceBiglietto;
+    }
+    public String getNome() {
+        return nome;
+    }
 }
