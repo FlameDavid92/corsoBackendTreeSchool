@@ -98,5 +98,8 @@ public class Main {
 
             percorso2 = percorso2.percorri(trenoRegionale);
         }
+
+        System.out.println("\nTest numero passeggeri:");
+        System.out.println(trenoRegionale.getNumPasseggeri() == 0);
     }
 }
