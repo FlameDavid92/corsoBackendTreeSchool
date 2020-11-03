@@ -1,6 +1,5 @@
-package it.corsobackendtree.esercizi10.miniAmazon;
+package it.corsobackendtree.esercizi10.miniAmazon.classi;
 
-import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.UUID;
 

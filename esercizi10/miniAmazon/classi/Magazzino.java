@@ -1,7 +1,6 @@
-package it.corsobackendtree.esercizi10.miniAmazon;
+package it.corsobackendtree.esercizi10.miniAmazon.classi;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.UUID;
 
 public class Magazzino implements Deposito {

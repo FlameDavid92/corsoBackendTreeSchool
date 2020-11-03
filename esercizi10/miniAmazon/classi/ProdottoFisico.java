@@ -1,4 +1,4 @@
-package it.corsobackendtree.esercizi10.miniAmazon;
+package it.corsobackendtree.esercizi10.miniAmazon.classi;
 
 public class ProdottoFisico extends Prodotto {
     private double peso;

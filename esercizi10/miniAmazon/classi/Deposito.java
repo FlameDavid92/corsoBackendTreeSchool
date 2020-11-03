@@ -1,4 +1,4 @@
-package it.corsobackendtree.esercizi10.miniAmazon;
+package it.corsobackendtree.esercizi10.miniAmazon.classi;
 
 public interface Deposito {
     public boolean addProdotto(Prodotto p);

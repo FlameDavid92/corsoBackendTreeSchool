@@ -1,6 +1,6 @@
-package it.corsobackendtree.esercizi10;
+package it.corsobackendtree.esercizi10.miniAmazon;
 
-import it.corsobackendtree.esercizi10.miniAmazon.*;
+import it.corsobackendtree.esercizi10.miniAmazon.classi.*;
 
 import java.util.ArrayList;
 

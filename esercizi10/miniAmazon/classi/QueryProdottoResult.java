@@ -1,4 +1,4 @@
-package it.corsobackendtree.esercizi10.miniAmazon;
+package it.corsobackendtree.esercizi10.miniAmazon.classi;
 
 public class QueryProdottoResult {
     private Prodotto prodotto;
