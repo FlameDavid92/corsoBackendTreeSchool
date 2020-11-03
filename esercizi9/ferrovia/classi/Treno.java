@@ -92,7 +92,7 @@ public abstract class Treno {
                 }
             }
         }
-        
+
         for(Vagone v : daFarUscire.keySet()){
             for(Passeggero p : daFarUscire.get(v)){
                 v.escePasseggero(p);
