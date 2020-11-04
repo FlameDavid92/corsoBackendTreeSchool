@@ -1,6 +1,11 @@
 package it.corsobackendtree.esercizi9.ferrovia;
 
-import it.corsobackendtree.esercizi9.ferrovia.classi.*;
+import it.corsobackendtree.esercizi9.ferrovia.classi.binari.*;
+import it.corsobackendtree.esercizi9.ferrovia.classi.passeggeri.PasseggeroSemplice;
+import it.corsobackendtree.esercizi9.ferrovia.classi.treni.FrecciaRossa;
+import it.corsobackendtree.esercizi9.ferrovia.classi.treni.TrenoRegionale;
+import it.corsobackendtree.esercizi9.ferrovia.classi.vagoni.Vagone;
+import it.corsobackendtree.esercizi9.ferrovia.classi.vagoni.VagonePasseggero;
 
 import java.util.ArrayList;
 
@@ -17,12 +22,12 @@ public class Main {
         BinarioStazione binarioStazione1 = new BinarioStazione(15, binarioSemplice2);
         BinarioSemplice binarioSemplice1 = new BinarioSemplice(binarioStazione1);
 
-        ArrayList<Porta> porteVagone1 = new ArrayList<>();
-        porteVagone1.add(new Porta());
-        porteVagone1.add(new Porta());
-        ArrayList<Porta> porteVagone2 = new ArrayList<>();
-        porteVagone2.add(new Porta());
-        porteVagone2.add(new Porta());
+        ArrayList<Vagone.Porta> porteVagone1 = new ArrayList<>();
+        porteVagone1.add(new Vagone.Porta());
+        porteVagone1.add(new Vagone.Porta());
+        ArrayList<Vagone.Porta> porteVagone2 = new ArrayList<>();
+        porteVagone2.add(new Vagone.Porta());
+        porteVagone2.add(new Vagone.Porta());
         VagonePasseggero vagone1 = new VagonePasseggero(20, porteVagone1);
         VagonePasseggero vagone2 = new VagonePasseggero(20, porteVagone2);
         PasseggeroSemplice passeggero1 = new PasseggeroSemplice("Davide", "IT7860", vagone1.getId(), 20);
