@@ -15,6 +15,8 @@ public class Labirinto {
     private Scanner sc;
     private Random rndm;
 
+    private enum StatoPostMossa { FINE, MOSSA, ERRORE }
+
     public Labirinto(int nRighe, int nColonne) {
         this.sc = new Scanner(System.in);
         this.nRighe = nRighe;
@@ -106,7 +108,7 @@ public class Labirinto {
         return nColonne;
     }
 
-    private boolean muoviGiocatore(char op) {
+    private StatoPostMossa muoviGiocatore(char op) {
         EntitaLabirinto temp = null;
         switch (op) {
             case 'W':
@@ -116,8 +118,12 @@ public class Labirinto {
                         giocatore.posXminus();
                     } else {
                         System.out.println("Non puoi muoverti su un muro o sul mostro!");
+                        return StatoPostMossa.ERRORE;
                     }
-                } else System.out.println("Puoi uscire dal labirinto solo dall'uscita :P !!!");
+                } else{
+                    System.out.println("Puoi uscire dal labirinto solo dall'uscita :P !!!");
+                    return StatoPostMossa.ERRORE;
+                }
                 break;
             case 'S':
                 if (giocatore.posX < nRighe - 1) {
@@ -126,8 +132,12 @@ public class Labirinto {
                         giocatore.posXplus();
                     } else {
                         System.out.println("Non puoi muoverti su un muro o sul mostro!");
+                        return StatoPostMossa.ERRORE;
                     }
-                } else System.out.println("Puoi uscire dal labirinto solo dall'uscita :P !!!");
+                } else {
+                    System.out.println("Puoi uscire dal labirinto solo dall'uscita :P !!!");
+                    return StatoPostMossa.ERRORE;
+                }
                 break;
             case 'A':
                 if (giocatore.posY > 0) {
@@ -136,8 +146,12 @@ public class Labirinto {
                         giocatore.posYminus();
                     } else {
                         System.out.println("Non puoi muoverti su un muro o sul mostro!");
+                        return StatoPostMossa.ERRORE;
                     }
-                } else System.out.println("Puoi uscire dal labirinto solo dall'uscita :P !!!");
+                } else {
+                    System.out.println("Puoi uscire dal labirinto solo dall'uscita :P !!!");
+                    return StatoPostMossa.ERRORE;
+                }
                 break;
             case 'D':
                 if (giocatore.posY < nColonne - 1) {
@@ -146,13 +160,18 @@ public class Labirinto {
                         giocatore.posYplus();
                     } else {
                         System.out.println("Non puoi muoverti su un muro o sul mostro!");
+                        return StatoPostMossa.ERRORE;
                     }
-                } else System.out.println("Puoi uscire dal labirinto solo dall'uscita :P !!!");
+                } else {
+                    System.out.println("Puoi uscire dal labirinto solo dall'uscita :P !!!");
+                    return StatoPostMossa.ERRORE;
+                }
                 break;
             case 'X':
-                return false;
+                return StatoPostMossa.FINE;
             default:
                 System.out.println("Mossa non riconosciuta!");
+                return StatoPostMossa.ERRORE;
         }
 
         if (temp instanceof Vortice) {
@@ -166,9 +185,9 @@ public class Labirinto {
             giocatore.setPosY(vortici[index].posY);
         } else if (temp instanceof Uscita) {
             System.out.println("Hai vintoooo!!!");
-            return false;
+            return StatoPostMossa.FINE;
         }
-        return true;
+        return StatoPostMossa.MOSSA;
     }
 
     /*Un mostro non può teletrasportarsi sui vortici!!!*/
@@ -208,10 +227,13 @@ public class Labirinto {
 
     public void start() {
         System.out.println("INIZIO GIOCO\n");
-        System.out.println(" W : Muro\n - : Spazio\n @ : Vortice\n § : Mostro\n\n");
-        boolean game = true;
-        while (game) {
-            printLabirinto();
+        System.out.println(" W : Muro\n - : Spazio\n @ : Vortice\n E : Uscita\n § : Mostro\n\n");
+        boolean printLab = true;
+
+        while (true) {
+            if(printLab) printLabirinto();
+            printLab = true;
+
             String input = "";
             do {
                 System.out.println("Inserisci un solo carattere tra W,A,S,D per muovere il giocatore o X per uscire dal gioco: ");
@@ -220,12 +242,15 @@ public class Labirinto {
 
             char mossa = input.toUpperCase().charAt(0);
             if (mossa == 'W' || mossa != 'A' || mossa != 'S' || mossa != 'D' || mossa != 'X') {
-                game = muoviGiocatore(mossa);
-                if (game) game = muoviMostro();
+                StatoPostMossa spm = muoviGiocatore(mossa);
+                if(spm.equals(StatoPostMossa.FINE)) break;
+                else if (spm.equals(StatoPostMossa.MOSSA)) muoviMostro();
+                else printLab = false;
             }else{
                 System.out.println("Il carattere inserito non corrisponde a nessuna scelta!");
             }
         }
+
         printLabirinto();
         System.out.println("FINE GIOCO\n");
     }
