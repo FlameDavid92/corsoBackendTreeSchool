@@ -4,6 +4,11 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import botBase.BotBase;
+import botListaDellaSpesa.BotListaDellaSpesa;
+import botRandomMedia.BotRandomMedia;
+
+import com.botticelli.bot.Bot;
 import com.botticelli.messagereceiver.MessageReceiver;
 
 public class Main {
@@ -23,7 +28,11 @@ public class Main {
             }
         }
 
-        Bot bot = new PrimoBot(token);
+        //Bot bot = new PrimoBot(token);
+        //Bot bot = new BotBase(token);
+        //Bot bot = new BotRandomMedia(token);
+        Bot bot = new BotListaDellaSpesa(token);
+
         MessageReceiver mr = new MessageReceiver(bot, 500, 1);
         mr.ignoreEditedMessages();
         mr.start();

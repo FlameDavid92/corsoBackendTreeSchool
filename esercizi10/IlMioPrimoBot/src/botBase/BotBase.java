@@ -1,19 +1,59 @@
+package botBase;
+
 import com.botticelli.bot.Bot;
 import com.botticelli.bot.request.methods.MessageToSend;
+import com.botticelli.bot.request.methods.StickerReferenceToSend;
 import com.botticelli.bot.request.methods.types.*;
 
-public class PrimoBot extends Bot {
+import java.util.ArrayList;
+import java.util.List;
 
-    public PrimoBot(String token)
+import static botBase.ComandoBotBase.*;
+
+public class BotBase extends Bot {
+
+    public BotBase(String token)
     {
         super(token);
     }
 
     @Override
     public void textMessage(Message message) {
-        System.out.println(message.getText());
-        MessageToSend messageToSend = new MessageToSend(message.getFrom().getId(), message.getText());
-        sendMessage(messageToSend);
+        ComandoBotBase c = fromString(message.getText());
+        MessageToSend mts = null;
+        switch (c)
+        {
+            case SALUTA:
+                String name = message.getChat().getUserName();
+                if(name == null) name = message.getChat().getFirstName();
+                if(name == null) name= "";
+                mts = new MessageToSend(message.getChat().getId(), "Ciao "+name+", come stai?");
+                break;
+            case MONOPATTINO:
+                mts = new MessageToSend(message.getChat().getId(), "Esercizio Facile");
+                break;
+            case SCOOTER:
+                mts = new MessageToSend(message.getChat().getId(), "Esercizio Medio");
+                break;
+            case MOTO:
+                mts = new MessageToSend(message.getChat().getId(), "Esercizio Avanzato");
+                break;
+            case TASTIERA:
+                List<List<KeyboardButton>> keyboard = new ArrayList<>();
+                List<KeyboardButton> line = new ArrayList<>();
+                line.add(new KeyboardButton("\uD83D\uDEF4"));
+                line.add(new KeyboardButton("\uD83D\uDEF5"));
+                line.add(new KeyboardButton("\uD83C\uDFCD"));
+                keyboard.add(line);
+                ReplyKeyboardMarkupWithButtons replyKeyboard = new ReplyKeyboardMarkupWithButtons(keyboard);
+                replyKeyboard.setResizeKeyboard(true);
+                mts = new MessageToSend(message.getFrom().getId(), "Ecco la tastiera");
+                mts.setReplyMarkup(replyKeyboard);
+                break;
+            case ERRORE:
+                mts = new MessageToSend(message.getChat().getId(), "Input non riconosciuto!");
+        }
+        sendMessage(mts);
     }
 
     @Override
@@ -33,7 +73,9 @@ public class PrimoBot extends Bot {
 
     @Override
     public void stickerMessage(Message message) {
-
+        MessageToSend mts = new MessageToSend(message.getChat().getId(), "Bello sto sticker! Guarda questo");
+        sendMessage(mts);
+        sendStickerbyReference(new StickerReferenceToSend(message.getFrom().getId(), "CAACAgIAAxkBAAMCX6J94LxR9XowJBICBa0a-1prKGsAAoUCAAJWnb0KowlyEF-XJhkeBA"));
     }
 
     @Override

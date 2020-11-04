@@ -1,24 +1,41 @@
+package botRandomMedia;
+
 import com.botticelli.bot.Bot;
-import com.botticelli.bot.request.methods.MessageToSend;
+import com.botticelli.bot.request.methods.*;
 import com.botticelli.bot.request.methods.types.*;
 
-public class PrimoBot extends Bot {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
-    public PrimoBot(String token)
+public class BotRandomMedia extends Bot {
+    ArrayList<String> immagini;
+    ArrayList<String> noteAudio;
+    ArrayList<String> canzoni;
+    ArrayList<String> stickers;
+    Random rndm;
+
+
+    public BotRandomMedia(String token)
     {
         super(token);
+        immagini = new ArrayList<>();
+        noteAudio = new ArrayList<>();
+        canzoni = new ArrayList<>();
+        stickers = new ArrayList<>();
+        rndm = new Random();
     }
 
     @Override
     public void textMessage(Message message) {
-        System.out.println(message.getText());
-        MessageToSend messageToSend = new MessageToSend(message.getFrom().getId(), message.getText());
-        sendMessage(messageToSend);
+
     }
 
     @Override
     public void audioMessage(Message message) {
-
+        canzoni.add(message.getAudio().getFileID());
+        int index = rndm.nextInt(canzoni.size());
+        sendAudiobyReference(new AudioReferenceToSend(message.getFrom().getId(),canzoni.get(index)));
     }
 
     @Override
@@ -28,12 +45,16 @@ public class PrimoBot extends Bot {
 
     @Override
     public void voiceMessage(Message message) {
-
+        noteAudio.add(message.getVoice().getFileID());
+        int index = rndm.nextInt(noteAudio.size());
+        sendVoicebyReference(new VoiceReferenceToSend(message.getFrom().getId(),noteAudio.get(index)));
     }
 
     @Override
     public void stickerMessage(Message message) {
-
+        stickers.add( message.getSticker().getFileID() );
+        int index = rndm.nextInt(stickers.size());
+        sendStickerbyReference(new StickerReferenceToSend(message.getFrom().getId(),stickers.get(index)));
     }
 
     @Override
@@ -43,7 +64,9 @@ public class PrimoBot extends Bot {
 
     @Override
     public void photoMessage(Message message) {
-
+        immagini.add(message.getPhoto().get(0).getFileID());
+        int index = rndm.nextInt(immagini.size());
+        sendPhotobyReference(new PhotoReferenceToSend(message.getFrom().getId(), immagini.get(index)));
     }
 
     @Override
