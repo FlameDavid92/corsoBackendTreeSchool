@@ -1,5 +1,6 @@
 package it.corsobackendtree.esercizi10.labirinto2.classi;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -43,7 +44,7 @@ public class Labirinto {
         do {
             posXMostro = rndm.nextInt(nRighe);
             posYMostro = rndm.nextInt(nColonne);
-        } while ( (labirinto[posXMostro][posYMostro] instanceof Muro) || ((posXGiocatore == posXMostro) && (posYGiocatore == posYMostro)) );
+        } while ((labirinto[posXMostro][posYMostro] instanceof Muro) || ((posXGiocatore == posXMostro) && (posYGiocatore == posYMostro)));
         mostro = new Mostro(posXMostro, posYMostro);
 
         vortici = new Vortice[2];
@@ -84,11 +85,11 @@ public class Labirinto {
     public void printLabirinto() {
         for (int i = 0; i < nRighe; i++) {
             for (int j = 0; j < nColonne; j++) {
-                if (i == giocatore.posX && j == giocatore.posY) {
-                    System.out.print("\t" + giocatore);
-                }else if(i == mostro.posX && j == mostro.posY){
+                if (i == mostro.posX && j == mostro.posY) {
                     System.out.print("\t" + mostro);
-                }else {
+                } else if (i == giocatore.posX && j == giocatore.posY) {
+                    System.out.print("\t" + giocatore);
+                } else {
                     System.out.print("\t" + labirinto[i][j]);
                 }
             }
@@ -105,19 +106,13 @@ public class Labirinto {
         return nColonne;
     }
 
-    /*public void switchPositionLabirinto(int posX1, int posY1, int posX2, int posY2){
-        EntitaLabirinto temp = labirinto[posX1][posY1];
-        labirinto[posX1][posY1] = labirinto[posX2][posY2];
-        labirinto[posX2][posY2] = temp;
-    }*/
-
     private boolean muoviGiocatore(char op) {
         EntitaLabirinto temp = null;
         switch (op) {
             case 'W':
                 if (giocatore.posX > 0) {
                     temp = labirinto[giocatore.posX - 1][giocatore.posY];
-                    if (!(temp instanceof Muro) && !((mostro.posX == giocatore.posX - 1)&&(mostro.posY == giocatore.posY))) {
+                    if (!(temp instanceof Muro) && !((mostro.posX == giocatore.posX - 1) && (mostro.posY == giocatore.posY))) {
                         giocatore.posXminus();
                     } else {
                         System.out.println("Non puoi muoverti su un muro o sul mostro!");
@@ -127,7 +122,7 @@ public class Labirinto {
             case 'S':
                 if (giocatore.posX < nRighe - 1) {
                     temp = labirinto[giocatore.posX + 1][giocatore.posY];
-                    if (!(temp instanceof Muro) && !((mostro.posX == giocatore.posX + 1)&&(mostro.posY == giocatore.posY))) {
+                    if (!(temp instanceof Muro) && !((mostro.posX == giocatore.posX + 1) && (mostro.posY == giocatore.posY))) {
                         giocatore.posXplus();
                     } else {
                         System.out.println("Non puoi muoverti su un muro o sul mostro!");
@@ -137,7 +132,7 @@ public class Labirinto {
             case 'A':
                 if (giocatore.posY > 0) {
                     temp = labirinto[giocatore.posX][giocatore.posY - 1];
-                    if (!(temp instanceof Muro) && !((mostro.posX == giocatore.posX)&&(mostro.posY == giocatore.posY-1))) {
+                    if (!(temp instanceof Muro) && !((mostro.posX == giocatore.posX) && (mostro.posY == giocatore.posY - 1))) {
                         giocatore.posYminus();
                     } else {
                         System.out.println("Non puoi muoverti su un muro o sul mostro!");
@@ -145,9 +140,9 @@ public class Labirinto {
                 } else System.out.println("Puoi uscire dal labirinto solo dall'uscita :P !!!");
                 break;
             case 'D':
-                if(giocatore.posY < nColonne-1){
+                if (giocatore.posY < nColonne - 1) {
                     temp = labirinto[giocatore.posX][giocatore.posY + 1];
-                    if (!(temp instanceof Muro) && !((mostro.posX == giocatore.posX)&&(mostro.posY == giocatore.posY+1))) {
+                    if (!(temp instanceof Muro) && !((mostro.posX == giocatore.posX) && (mostro.posY == giocatore.posY + 1))) {
                         giocatore.posYplus();
                     } else {
                         System.out.println("Non puoi muoverti su un muro o sul mostro!");
@@ -160,48 +155,76 @@ public class Labirinto {
                 System.out.println("Mossa non riconosciuta!");
         }
 
-        if(temp instanceof Vortice){
+        if (temp instanceof Vortice) {
             int index;
-            do{
+            do {
                 index = rndm.nextInt(vortici.length);
-            }while(vortici[index].equals(temp));
+            } while (vortici[index].equals(temp));
 
             System.out.println("Sei entrato nel vorticeeee@@@@@");
             giocatore.setPosX(vortici[index].posX);
             giocatore.setPosY(vortici[index].posY);
-        }else if(temp instanceof Uscita){
+        } else if (temp instanceof Uscita) {
             System.out.println("Hai vintoooo!!!");
             return false;
         }
         return true;
     }
 
-    private boolean muoviMostro(){
-        if(mostro.posX > giocatore.posX && labirinto[mostro.posX-1][mostro.posY] instanceof SpazioVuoto){
+    /*Un mostro non può teletrasportarsi sui vortici!!!*/
+    private boolean muoviMostro() {
+        if (mostro.posX > giocatore.posX && labirinto[mostro.posX - 1][mostro.posY] instanceof SpazioVuoto) {
             mostro.posXminus();
-        }else if(mostro.posX < giocatore.posX && labirinto[mostro.posX+1][mostro.posY] instanceof SpazioVuoto){
+        } else if (mostro.posX < giocatore.posX && labirinto[mostro.posX + 1][mostro.posY] instanceof SpazioVuoto) {
             mostro.posXplus();
-        }else if(mostro.posY > giocatore.posY && labirinto[mostro.posX][mostro.posY-1] instanceof SpazioVuoto){
+        } else if (mostro.posY > giocatore.posY && labirinto[mostro.posX][mostro.posY - 1] instanceof SpazioVuoto) {
             mostro.posYminus();
-        }else if(mostro.posY > giocatore.posY && labirinto[mostro.posX][mostro.posY+1] instanceof SpazioVuoto){
+        } else if (mostro.posY < giocatore.posY && labirinto[mostro.posX][mostro.posY + 1] instanceof SpazioVuoto) {
             mostro.posYplus();
-        }
+        } else {
+            ArrayList<int[]> ael = new ArrayList<>();
+            if ((mostro.posX - 1 >= 0) && labirinto[mostro.posX - 1][mostro.posY] instanceof SpazioVuoto)
+                ael.add(new int[]{mostro.posX - 1, mostro.posY});
+            if ((mostro.posX + 1 < nRighe) && labirinto[mostro.posX + 1][mostro.posY] instanceof SpazioVuoto)
+                ael.add(new int[]{mostro.posX + 1, mostro.posY});
+            if ((mostro.posY - 1 >= 0) && labirinto[mostro.posX][mostro.posY - 1] instanceof SpazioVuoto)
+                ael.add(new int[]{mostro.posX, mostro.posY - 1});
+            if ((mostro.posY + 1 < nColonne) && labirinto[mostro.posX][mostro.posY + 1] instanceof SpazioVuoto)
+                ael.add(new int[]{mostro.posX, mostro.posY + 1});
 
-        if(mostro.posX == giocatore.posX && mostro.posY == giocatore.posY){
+            if (ael.size() > 0) {
+                int choice = rndm.nextInt(ael.size());
+                mostro.setPosX(ael.get(choice)[0]);
+                mostro.setPosY(ael.get(choice)[1]);
+            } else {
+                System.out.println("Che fortuna, il mostro è bloccato!");
+            }
+        }
+        if (mostro.posX == giocatore.posX && mostro.posY == giocatore.posY) {
             System.out.println("GAME OVER! Il mostro ti ha preso!!!");
             return false;
-        }else return true;
+        } else return true;
     }
 
-    public void start(){
+    public void start() {
         System.out.println("INIZIO GIOCO\n");
+        System.out.println(" W : Muro\n - : Spazio\n @ : Vortice\n § : Mostro\n\n");
         boolean game = true;
-        while(game){
+        while (game) {
             printLabirinto();
-            System.out.println("Inserisci un carattere tra W,A,S,D per muovere il giocatore o X per uscire dal gioco: ");
-            char mossa = sc.nextLine().toUpperCase().charAt(0);
-            game = muoviGiocatore(mossa);
-            if(game) game = muoviMostro();
+            String input = "";
+            do {
+                System.out.println("Inserisci un solo carattere tra W,A,S,D per muovere il giocatore o X per uscire dal gioco: ");
+                input = sc.nextLine();
+            } while (input.length() != 1);
+
+            char mossa = input.toUpperCase().charAt(0);
+            if (mossa == 'W' || mossa != 'A' || mossa != 'S' || mossa != 'D' || mossa != 'X') {
+                game = muoviGiocatore(mossa);
+                if (game) game = muoviMostro();
+            }else{
+                System.out.println("Il carattere inserito non corrisponde a nessuna scelta!");
+            }
         }
         printLabirinto();
         System.out.println("FINE GIOCO\n");
