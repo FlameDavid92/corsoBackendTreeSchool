@@ -228,11 +228,9 @@ public class Labirinto {
     public void start() {
         System.out.println("INIZIO GIOCO\n");
         System.out.println(" W : Muro\n - : Spazio\n @ : Vortice\n E : Uscita\n § : Mostro\n\n");
-        boolean printLab = true;
 
         while (true) {
-            if(printLab) printLabirinto();
-            printLab = true;
+            printLabirinto();
 
             String input = "";
             do {
@@ -244,8 +242,9 @@ public class Labirinto {
             if (mossa == 'W' || mossa != 'A' || mossa != 'S' || mossa != 'D' || mossa != 'X') {
                 StatoPostMossa spm = muoviGiocatore(mossa);
                 if(spm.equals(StatoPostMossa.FINE)) break;
-                else if (spm.equals(StatoPostMossa.MOSSA)) muoviMostro();
-                else printLab = false;
+                else{
+                    muoviMostro();
+                }
             }else{
                 System.out.println("Il carattere inserito non corrisponde a nessuna scelta!");
             }
