@@ -3,7 +3,7 @@ package botListaDellaSpesa;
 import botBase.ComandoBotBase;
 
 public enum ComandoBotSpesa {
-    START("/start"),RESTART("/restart"),LISTA("Lista della spesa"),AGGIUNGI("Aggiungi"),RIMUOVI("Rimuovi"),ERRORE("errore");
+    START("/start"),LISTA("Lista della spesa"),AGGIUNGI("Aggiungi"),RIMUOVI("Rimuovi"),ERRORE("errore");
 
     String str;
     private ComandoBotSpesa(String str){
