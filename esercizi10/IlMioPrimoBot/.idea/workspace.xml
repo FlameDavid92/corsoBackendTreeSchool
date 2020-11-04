@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d1a4903c-6e8d-4d2e-a6c1-caed8bc01b41" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Botticelli.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/okhttp_3_9_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/okio_1_13_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IlMioPrimoBot.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/PrimoBot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/botBase/BotBase$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/botBase/BotBase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/botBase/ComandoBotBase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/botListaDellaSpesa/BotListaDellaSpesa$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/botListaDellaSpesa/BotListaDellaSpesa$StatoUtenteBot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/botListaDellaSpesa/BotListaDellaSpesa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/botListaDellaSpesa/ComandoBotSpesa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/botListaDellaSpesa/ElementoLista.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IlMioPrimoBot/botRandomMedia/BotRandomMedia.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PrimoBot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/botBase/BotBase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/botBase/ComandoBotBase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/botListaDellaSpesa/BotListaDellaSpesa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/botListaDellaSpesa/ComandoBotSpesa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/botListaDellaSpesa/ElementoLista.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/botRandomMedia/BotRandomMedia.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/telegramLibrary/Botticelli.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/telegramLibrary/Botticelli_lib/gson-2.8.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/telegramLibrary/Botticelli_lib/okhttp-3.9.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/telegramLibrary/Botticelli_lib/okio-1.13.0.jar" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1jVLAGq0i6d0bEMEuOYhT4EjAvZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../TelegramBots" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="IlMioPrimoBot" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d1a4903c-6e8d-4d2e-a6c1-caed8bc01b41" name="Default Changelist" comment="" />
+      <created>1603884167451</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603884167451</updated>
+      <workItem from="1604481638678" duration="25293000" />
+      <workItem from="1604507630011" duration="84000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="249" y="0" key="#Project_Structure" timestamp="1604481652706">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1604481652706" />
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1603884935784">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1603884935784" />
+    <state x="533" y="207" key="FileChooserDialogImpl" timestamp="1604507712415">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="533" y="207" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1604507712415" />
+    <state x="666" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603884823780" />
+    <state width="1493" height="108" key="GridCell.Tab.0.bottom" timestamp="1604507614393">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="108" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604507614393" />
+    <state width="1493" height="108" key="GridCell.Tab.0.center" timestamp="1604507614392">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="108" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1604507614392" />
+    <state width="1493" height="108" key="GridCell.Tab.0.left" timestamp="1604507614392">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="108" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1604507614392" />
+    <state width="1493" height="108" key="GridCell.Tab.0.right" timestamp="1604507614392">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="108" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1604507614392" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1603884866450">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603884866450" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604495399570">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1604495399570" />
+  </component>
+</project>
