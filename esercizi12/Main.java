@@ -8,7 +8,7 @@ public class Main {
 
     private static void test(SupermarketQueue cs){
         Cliente marco = new Cliente("Marco","Bianchi",58);
-        Cliente alessio = new Cliente("Alessio","Verdi",26);
+        Cliente alessio = new Cliente("Alessio","Verdi",32);
         Cliente federica = new Cliente("Federica","Neri",32);
         Cliente michele = new Cliente("Michele","Rossi", 72);
         Cliente angela = new Cliente("Angela","Bianchi",18);
@@ -28,7 +28,7 @@ public class Main {
         cs.clienteInCassa();
         System.out.println(cs.whoIsNext().getEta() == 32);
         cs.clienteInCassa();
-        System.out.println(cs.whoIsNext().getEta() == 26);
+        System.out.println(cs.whoIsNext().getEta() == 32);
         cs.clienteInCassa();
         System.out.println(cs.whoIsNext().getEta() == 18);
         cs.clienteInCassa();

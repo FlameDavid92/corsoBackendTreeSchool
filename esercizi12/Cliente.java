@@ -47,8 +47,9 @@ public class Cliente implements Comparable<Cliente> {
             return -1;
         } else if (this.eta < o.eta) {
             return 1;
+        } else{
+            return this.id.compareTo(o.id);
         }
-        return 0;
     }
 
     @Override
