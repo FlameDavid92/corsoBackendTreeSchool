@@ -2,13 +2,16 @@ package it.corsobackendtree.esercizi12;
 
 public class Main {
     public static void main(String[] args) {
-        CodaSupermercato cs = new CodaSupermercato();
+        //test(new CodaSupermercatoPriorityQueue()); /*PriorityQueue*/
+        test(new CodaSupermercatoTreeSet()); /*TreeSet - soluzione migliore per complessità nella gestione dei duplicati!*/
+    }
+
+    private static void test(SupermarketQueue cs){
         Cliente marco = new Cliente("Marco","Bianchi",58);
         Cliente alessio = new Cliente("Alessio","Verdi",26);
         Cliente federica = new Cliente("Federica","Neri",32);
         Cliente michele = new Cliente("Michele","Rossi", 72);
         Cliente angela = new Cliente("Angela","Bianchi",18);
-
 
         cs.arrivaCliente(marco);
         cs.arrivaCliente(alessio);

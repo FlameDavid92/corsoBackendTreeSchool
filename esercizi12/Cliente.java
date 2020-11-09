@@ -3,24 +3,27 @@ package it.corsobackendtree.esercizi12;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Cliente implements Comparable<Cliente>{
+public class Cliente implements Comparable<Cliente> {
     private UUID id;
     private String nome;
     private String cognome;
     private int eta;
 
-    public Cliente(String nome, String cognome, int eta){
+    public Cliente(String nome, String cognome, int eta) {
         id = UUID.randomUUID();
         this.nome = nome;
         this.cognome = cognome;
         this.eta = eta;
     }
+
     public String getNome() {
         return nome;
     }
+
     public String getCognome() {
         return cognome;
     }
+
     public int getEta() {
         return eta;
     }
@@ -40,11 +43,16 @@ public class Cliente implements Comparable<Cliente>{
 
     @Override
     public int compareTo(Cliente o) {
-        if(this.eta > o.eta){
+        if (this.eta > o.eta) {
             return -1;
-        }else if(this.eta < o.eta){
+        } else if (this.eta < o.eta) {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return nome+" "+cognome+" "+eta;
     }
 }
