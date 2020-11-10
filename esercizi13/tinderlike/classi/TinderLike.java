@@ -3,7 +3,7 @@ package it.corsobackendtree.esercizi13.tinderlike.classi;
 import java.util.*;
 
 public class TinderLike {
-    Map<UUID, Utente> utenti;
+    private Map<UUID, Utente> utenti;
 
     public TinderLike() {
         utenti = new HashMap<>();
