@@ -1,4 +1,7 @@
-package it.corsobackendtree.esercizi13;
+package it.corsobackendtree.esercizi13.dictionary;
+
+import it.corsobackendtree.esercizi13.dictionary.eccezioni.MalformedWordException;
+import it.corsobackendtree.esercizi13.dictionary.eccezioni.VoidDictionaryException;
 
 import java.util.*;
 

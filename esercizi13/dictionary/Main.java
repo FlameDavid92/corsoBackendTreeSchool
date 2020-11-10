@@ -1,4 +1,8 @@
-package it.corsobackendtree.esercizi13;
+package it.corsobackendtree.esercizi13.dictionary;
+
+import it.corsobackendtree.esercizi13.dictionary.eccezioni.MalformedSignificatoException;
+import it.corsobackendtree.esercizi13.dictionary.eccezioni.MalformedWordException;
+import it.corsobackendtree.esercizi13.dictionary.eccezioni.VoidDictionaryException;
 
 public class Main {
     public static void main(String[] args) {

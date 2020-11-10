@@ -1,4 +1,7 @@
-package it.corsobackendtree.esercizi13;
+package it.corsobackendtree.esercizi13.dictionary;
+
+import it.corsobackendtree.esercizi13.dictionary.eccezioni.MalformedSignificatoException;
+import it.corsobackendtree.esercizi13.dictionary.eccezioni.MalformedWordException;
 
 import java.util.HashSet;
 import java.util.Objects;
