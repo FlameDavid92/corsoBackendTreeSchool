@@ -24,7 +24,7 @@ public class Dictionary {
         if (dizionario.containsKey(firstChar)) {
             return dizionario.get(firstChar).add(parola);
         } else {
-            throw new MalformedWordException("Non è possibile aggiungere la parola data a questo dizionario!");
+            throw new MalformedWordException("Non è possibile aggiungere la parola '"+parola.getParola()+"' a questo dizionario!");
         }
     }
 

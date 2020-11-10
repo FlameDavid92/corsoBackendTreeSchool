@@ -6,125 +6,64 @@ import it.corsobackendtree.esercizi13.dictionary.eccezioni.VoidDictionaryExcepti
 
 public class Main {
     public static void main(String[] args) {
-        Dictionary nuovoDizioanrio = new Dictionary();
-        try {
-            nuovoDizioanrio.printDictionary();
-        } catch (VoidDictionaryException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        }
+        Dictionary nuovoDizionario = new Dictionary();
+        stampaDizionario(nuovoDizionario);
 
-        Parola calcio = null;
-        Parola carota = null;
-        Parola caffeina = null;
-        Parola badword = null;
-        Parola badwordmeaning = null;
-        Parola badDictionaryWord = null;
-        try {
-            calcio = new Parola("calcio", "sport");
-        } catch (MalformedSignificatoException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (MalformedWordException e2){
-            System.out.println("ECCEZIONE: "+e2.getMessage());
-        }
+        Parola calcio = creaParola("calcio","sport");
+        Parola carota = creaParola("carota","ortaggio");
+        Parola caffeina = creaParola("caffeina","alcaloide naturale");
+        Parola badword = creaParola("","significato");
+        Parola badwordmeaning = creaParola("badwordmeaning","?jbsdjv");
+        Parola badDictionaryWord = creaParola("?","punto interrogativo");
 
-        try {
-            carota = new Parola("carota", "ortaggio");
-        } catch (MalformedSignificatoException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (MalformedWordException e2){
-            System.out.println("ECCEZIONE: "+e2.getMessage());
-        }
-        try {
-            caffeina = new Parola("caffeina", "alcaloide naturale");
-        } catch (MalformedSignificatoException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (MalformedWordException e2){
-            System.out.println("ECCEZIONE: "+e2.getMessage());
-        }
-        try {
-            badword = new Parola("","significato");
-        } catch (MalformedSignificatoException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (MalformedWordException e2){
-            System.out.println("ECCEZIONE: "+e2.getMessage());
-        }
-        try {
-            badwordmeaning = new Parola("badwordmeaning","?jbsdjv");
-        } catch (MalformedSignificatoException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (MalformedWordException e2){
-            System.out.println("ECCEZIONE: "+e2.getMessage());
-        }
-        try {
-            badDictionaryWord = new Parola("?","punto interrogativo");
-        } catch (MalformedSignificatoException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (MalformedWordException e2){
-            System.out.println("ECCEZIONE: "+e2.getMessage());
-        }
+        aggiungiSignificato(calcio,"elemento chimico");
 
-        try {
-            calcio.addSignificato("elemento chimico");
-        } catch (MalformedSignificatoException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (NullPointerException e2) {
-            System.out.println("Null Pointer Exception!!!!!!!");
-        }
+        aggiungiParola(nuovoDizionario,calcio);
+        aggiungiParola(nuovoDizionario,carota);
+        aggiungiParola(nuovoDizionario,caffeina);
+        aggiungiParola(nuovoDizionario,badword);
+        aggiungiParola(nuovoDizionario,badwordmeaning);
+        aggiungiParola(nuovoDizionario,badDictionaryWord);
 
-        try {
-            nuovoDizioanrio.inserisciParola(calcio);
-        } catch (MalformedWordException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (NullPointerException e2) {
-            System.out.println("Null Pointer Exception!!!!!!!");
-        }
+        stampaDizionario(nuovoDizionario);
+    }
 
-        try {
-            nuovoDizioanrio.inserisciParola(carota);
-        } catch (MalformedWordException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (NullPointerException e2) {
-            System.out.println("Null Pointer Exception!!!!!!!");
-        }
-
-        try {
-            nuovoDizioanrio.inserisciParola(caffeina);
-        } catch (MalformedWordException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (NullPointerException e2) {
-            System.out.println("Null Pointer Exception!!!!!!!");
-        }
-
-        try {
-            nuovoDizioanrio.inserisciParola(badword);
-        } catch (MalformedWordException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (NullPointerException e2) {
-            System.out.println("Null Pointer Exception!!!!!!!");
-        }
-
-        try {
-            nuovoDizioanrio.inserisciParola(badwordmeaning);
-        } catch (MalformedWordException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (NullPointerException e2) {
-            System.out.println("Null Pointer Exception!!!!!!!");
-        }
-
-        try {
-            nuovoDizioanrio.inserisciParola(badDictionaryWord);
-        } catch (MalformedWordException e) {
-            System.out.println("ECCEZIONE: "+e.getMessage());
-        } catch (NullPointerException e2) {
-            System.out.println("Null Pointer Exception!!!!!!!");
-        }
-
-
+    private static void stampaDizionario(Dictionary dizionario){
         System.out.println("\n");
         try {
-            nuovoDizioanrio.printDictionary();
+            dizionario.printDictionary();
         } catch (VoidDictionaryException e) {
             System.out.println("ECCEZIONE: "+e.getMessage());
+        }
+    }
+
+    private static void aggiungiParola(Dictionary dizionario, Parola parola){
+        try {
+            dizionario.inserisciParola(parola);
+        } catch (MalformedWordException e) {
+            System.out.println("ECCEZIONE: "+e.getMessage());
+        } catch (NullPointerException e2) {
+            System.out.println("Null Pointer Exception!!!!!!!");
+        }
+    }
+    private static Parola creaParola(String parola, String significato){
+        try {
+            Parola ret = new Parola(parola, significato);
+            return ret;
+        } catch (MalformedSignificatoException e) {
+            System.out.println("ECCEZIONE: "+e.getMessage());
+        } catch (MalformedWordException e2){
+            System.out.println("ECCEZIONE: "+e2.getMessage());
+        }
+        return null;
+    }
+    private static void aggiungiSignificato(Parola parola, String significato){
+        try {
+            parola.addSignificato(significato);
+        } catch (MalformedSignificatoException e) {
+            System.out.println("ECCEZIONE: "+e.getMessage());
+        } catch (NullPointerException e2) {
+            System.out.println("Null Pointer Exception!!!!!!!");
         }
     }
 }
