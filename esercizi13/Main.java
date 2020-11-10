@@ -12,8 +12,8 @@ public class Main {
         Parola calcio = null;
         Parola carota = null;
         Parola caffeina = null;
-        Parola badwordmeaning = null;
         Parola badword = null;
+        Parola badwordmeaning = null;
         Parola badDictionaryWord = null;
         try {
             calcio = new Parola("calcio", "sport");
