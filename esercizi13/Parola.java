@@ -8,20 +8,21 @@ public class Parola implements Comparable<Parola>{
     private String parola;
     private Set<String> significati;
 
-    public Parola(String parola, String significato) throws MalformedSignificatoException {
-        if(Character.isLetter(significato.charAt(0))){
+    public Parola(String parola, String significato) throws MalformedSignificatoException, MalformedWordException {
+        if(parola.length() == 0) throw new MalformedWordException("Una parola deve avere almeno una lettera.");
+        if(significato.length() > 0 && Character.isLetter(significato.charAt(0))){
             this.parola = parola;
             significati = new HashSet<>();
             significati.add(significato);
         }else{
-            throw new MalformedSignificatoException("Il significato di una parola deve iniziare con  una lettera.");
+            throw new MalformedSignificatoException("Il significato di una parola deve iniziare con una lettera.");
         }
     }
     public boolean addSignificato(String significato) throws MalformedSignificatoException {
-        if(Character.isLetter(significato.charAt(0))){
+        if(Character.isLetter(significato.charAt(0)) && significato.length() > 0){
             return significati.add(significato);
         }else{
-            throw new MalformedSignificatoException("Il significato di una parola deve iniziare con  una lettera.");
+            throw new MalformedSignificatoException("Il significato di una parola deve iniziare con una lettera.");
         }
     }
 
