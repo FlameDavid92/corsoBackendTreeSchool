@@ -16,22 +16,26 @@ public class Dictionary {
         }
     }
 
-    public boolean inserisciParola(Parola parola) {
+    public boolean inserisciParola(Parola parola) throws MalformedWordException {
         Character firstChar = parola.getParola().toUpperCase().charAt(0);
         if (dizionario.containsKey(firstChar)) {
             return dizionario.get(firstChar).add(parola);
         } else {
-            System.out.println("Non è possibile aggiungere la parola data a questo dizionario!");
-            return false;
+            throw new MalformedWordException("Non è possibile aggiungere la parola data a questo dizionario!");
         }
     }
 
-    public void printDictionary() {
+    public void printDictionary() throws VoidDictionaryException {
+        boolean check = false;
         for (Character key : dizionario.keySet()) {
             if (dizionario.get(key).size() != 0) {
+                if(!check) check = true;
                 System.out.print(key + ":");
                 System.out.print(dizionario.get(key)+"\n");
             }
+        }
+        if(!check){
+            throw new VoidDictionaryException("Non ci sono parole nel dizionario!");
         }
     }
 }
