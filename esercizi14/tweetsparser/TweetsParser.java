@@ -93,11 +93,11 @@ public class TweetsParser {
         try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
             String line = br.readLine(); /*salta la prima riga*/
             while ((line = br.readLine()) != null) {
-                String content = CSVUtils.parseLine(line).get(2).toLowerCase();
+                String content = CSVUtils.parseLine(line).get(2);
                 Matcher matcher = pattern.matcher(content);
                 while(matcher.find()) {
                     String word = matcher.group();
-                    if(!stopWords.contains(word)){
+                    if(!stopWords.contains(word.toLowerCase())){
                         if (wordsOccurrences.containsKey(word)) {
                             wordsOccurrences.put(word, wordsOccurrences.get(word) + 1);
                         } else {
