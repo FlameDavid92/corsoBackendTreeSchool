@@ -19,6 +19,10 @@ public class TweetsParser {
         lastPathComputed = "";
         regex = "[^\\d\\W]+"; /*all words with no digits*/
         pattern = Pattern.compile(regex);
+        initializeStopWordsSet(stopWordsFilePath);
+    }
+
+    private void initializeStopWordsSet(String stopWordsFilePath){
         stopWords = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader(stopWordsFilePath))) {
             String line;
