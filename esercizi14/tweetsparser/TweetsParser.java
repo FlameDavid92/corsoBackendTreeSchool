@@ -21,7 +21,7 @@ public class TweetsParser {
     public TreeMap<Long, String> mostFrequent10Words(String csvFilePath) {
         wordsOccurrences = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
-            String line = br.readLine();
+            String line = br.readLine(); /*salta la prima riga*/
             while ((line = br.readLine()) != null) {
                 String content = CSVUtils.parseLine(line).get(2);
                 if (!content.contains("pic.twitter") && !content.contains("http")) {
