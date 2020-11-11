@@ -21,7 +21,7 @@ public class TweetsParser {
         pattern = Pattern.compile(regex);
         stopWords = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader(stopWordsFilePath))) {
-            String line = br.readLine();
+            String line;
             while ((line = br.readLine()) != null) {
                 stopWords.add(line.trim());
             }
@@ -93,8 +93,8 @@ public class TweetsParser {
         try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
             String line = br.readLine(); /*salta la prima riga*/
             while ((line = br.readLine()) != null) {
-                String content = CSVUtils.parseLine(line).get(2);
-                Matcher matcher = pattern.matcher(line);
+                String content = CSVUtils.parseLine(line).get(2).toLowerCase();
+                Matcher matcher = pattern.matcher(content);
                 while(matcher.find()) {
                     String word = matcher.group();
                     if(!stopWords.contains(word)){
