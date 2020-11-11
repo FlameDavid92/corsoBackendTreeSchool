@@ -13,14 +13,26 @@ public class TweetsParser {
     String regex;
     Pattern pattern;
     String lastPathComputed;
+    Set<String> stopWords;
 
-    public TweetsParser(){
+    public TweetsParser(String stopWordsFilePath){
         lastPathComputed = "";
         regex = "[^\\d\\W]+"; /*all words with no digits*/
         pattern = Pattern.compile(regex);
+        stopWords = new HashSet<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(stopWordsFilePath))) {
+            String line = br.readLine();
+            while ((line = br.readLine()) != null) {
+                stopWords.add(line.trim());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public TreeMap<Long, List<String>> mostFrequent10Words(String csvFilePath) {
+    public TreeMap<Long, List<String>> mostFrequentWords(String csvFilePath) {
         computeWordsOccurences(csvFilePath);
         TreeMap<Long, List<String>> mostFrequent10 = new TreeMap<>();
         for (String key : wordsOccurrences.keySet()) {
@@ -85,10 +97,12 @@ public class TweetsParser {
                 Matcher matcher = pattern.matcher(line);
                 while(matcher.find()) {
                     String word = matcher.group();
-                    if (wordsOccurrences.containsKey(word)) {
-                        wordsOccurrences.put(word, wordsOccurrences.get(word) + 1);
-                    } else {
-                        wordsOccurrences.put(word, 1L);
+                    if(!stopWords.contains(word)){
+                        if (wordsOccurrences.containsKey(word)) {
+                            wordsOccurrences.put(word, wordsOccurrences.get(word) + 1);
+                        } else {
+                            wordsOccurrences.put(word, 1L);
+                        }
                     }
                 }
             }
