@@ -10,6 +10,7 @@ public class Main {
             System.out.println(mostFrequent10.pollLastEntry());
         }
         System.out.println("------");
+
         mostFrequent10 = tp.mostFrequent10Words("./it/corsobackendtree/esercizi14/tweetsparser/trumptweets.csv");
         for (int i = 0; i < 10; i++) {
             System.out.println(mostFrequent10.pollLastEntry());

@@ -5,19 +5,29 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TweetsParser {
     Map<String, Long> wordsOccurrences;
+    String regex;
+    Pattern pattern;
+
+    public TweetsParser(){
+        regex = "[^\\d\\W]+"; /*all words with no digits*/
+        pattern = Pattern.compile(regex);
+    }
 
     public TreeMap<Long, String> mostFrequent10Words(String csvFilePath) {
         wordsOccurrences = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
             String line = br.readLine();
             while ((line = br.readLine()) != null) {
-                String content = line.split(",")[2];
-                String[] words = content.split("\\W+"); /*!*/
-                for (String word : words) {
-                    if (word.length() > 0) {
+                String content = CSVUtils.parseLine(line).get(2);
+                if (!content.contains("pic.twitter") && !content.contains("http")) {
+                    Matcher matcher = pattern.matcher(line);
+                    while(matcher.find()) {
+                        String word = matcher.group();
                         if (wordsOccurrences.containsKey(word)) {
                             wordsOccurrences.put(word, wordsOccurrences.get(word) + 1);
                         } else {
