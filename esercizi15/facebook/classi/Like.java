@@ -8,7 +8,7 @@ public class Like {
     private Utente utente;
     private Post post;
 
-    protected Like(Utente utente, Post post){
+    Like(Utente utente, Post post){
         id = UUID.randomUUID();
         this.utente = utente;
         this.post = post;

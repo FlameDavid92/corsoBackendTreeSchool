@@ -11,7 +11,7 @@ public class Post {
     Set<Commento> commenti;
     Set<Like> likes;
 
-    protected Post(String testo){
+    Post(String testo){
         id = UUID.randomUUID();
         this.testo = testo;
         commenti = new HashSet<>();
@@ -26,19 +26,19 @@ public class Post {
         return commenti;
     }
 
-    protected boolean aggiungiCommento(Commento commento){
+    boolean aggiungiCommento(Commento commento){
         return commenti.add(commento);
     }
 
-    protected boolean rimuoviCommento(Commento commento){
+    boolean rimuoviCommento(Commento commento){
         return commenti.remove(commento);
     }
 
-    protected boolean aggiungiLike(Like like){
+    boolean aggiungiLike(Like like){
         return likes.add(like);
     }
 
-    protected boolean rimuoviLike(Like like){
+    boolean rimuoviLike(Like like){
         return likes.remove(like);
     }
 

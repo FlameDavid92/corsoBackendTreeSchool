@@ -9,7 +9,7 @@ public class Commento {
     private Post post;
     private String testo;
 
-    protected Commento(Utente utente, Post post, String testo){
+    Commento(Utente utente, Post post, String testo){
         id = UUID.randomUUID();
         this.utente = utente;
         this.post = post;

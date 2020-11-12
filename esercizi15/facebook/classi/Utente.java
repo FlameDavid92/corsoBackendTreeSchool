@@ -13,7 +13,7 @@ public class Utente {
     private Set<Post> postCommentati;
     private Set<Post> postPiaciuti;
 
-    protected Utente(String nome, String cognome){
+    Utente(String nome, String cognome){
         id = UUID.randomUUID();
         timestamp = Instant.now();
         this.nome = nome;
@@ -24,39 +24,39 @@ public class Utente {
         postPiaciuti = new HashSet<>();
     }
 
-    protected boolean aggiungiAmico(Utente amico){
+    boolean aggiungiAmico(Utente amico){
         if(amico.equals(this)) return false; /*Non posso essere amico di me stesso :( */
         else{
             return amici.add(amico); /* true se aggiunge, false se già presente*/
         }
     }
 
-    protected boolean rimuoviAmico(Utente amico){
+    boolean rimuoviAmico(Utente amico){
         return amici.remove(amico);
     }
 
-    protected void cambiaNome(String nome){
+    void cambiaNome(String nome){
         this.nome = nome;
     }
 
-    protected void cambiaCognome(String cognome){
+    void cambiaCognome(String cognome){
         this.cognome = cognome;
     }
 
-    protected Post pubblicaPost(String testoPost){
+    Post pubblicaPost(String testoPost){
         Post nuovoPost = new Post(testoPost);
         posts.add(nuovoPost);
         return nuovoPost;
     }
 
-    protected Commento commentaPost(Post post, String testoCommento){
+    Commento commentaPost(Post post, String testoCommento){
         Commento nuovoCommento = new Commento(this,post,testoCommento);
         post.aggiungiCommento(nuovoCommento);
         postCommentati.add(post);
         return nuovoCommento;
     }
 
-    protected boolean mettiLikeAPost(Post post){
+    boolean mettiLikeAPost(Post post){
         Like nuovoLike = new Like(this,post);
         if(post.aggiungiLike(nuovoLike)){
             postPiaciuti.add(post);
@@ -66,15 +66,15 @@ public class Utente {
 
     /*rimuoviCommento-rimuoviLike*/
 
-    protected Set<Post> getPosts(){
+    Set<Post> getPosts(){
         return posts;
     }
 
-    protected Set<Post> getPostCommentati() {
+    Set<Post> getPostCommentati() {
         return postCommentati;
     }
 
-    protected Set<Post> getPostPiaciuti() {
+    Set<Post> getPostPiaciuti() {
         return postPiaciuti;
     }
 
@@ -94,7 +94,7 @@ public class Utente {
         return new LinkedList<Utente>(amici);
     }
 
-    protected boolean equalsNomeCognome(String nome, String cognome){
+    boolean equalsNomeCognome(String nome, String cognome){
         return (this.nome.toLowerCase().equals(nome.toLowerCase())) && (this.cognome.toLowerCase().equals(cognome.toLowerCase()));
     }
 
