@@ -18,6 +18,10 @@ public class Main {
         System.out.println(!app.registraUtente("davidefiguccia2020@outlook.it"));
         System.out.println(!app.registraUtente("marco.com"));
 
+        Utente alessio = app.getUtente("alessioritondo@outlook.com");
+        Utente chiara = app.getUtente("chiaragabriele@outlook.com");
+        Utente davide = app.getUtente("davidefiguccia2020@outlook.it");
+
         System.out.println("---TEST INSERIMENTO VETTURE---");
         Parcheggio parcheggioInStrada = new Parcheggio(37.794690,12.441030);
         ParcheggioConvenzionato parcheggioConvenzionato = new ParcheggioConvenzionato(37.794040,12.441560,2);
@@ -31,41 +35,45 @@ public class Main {
         System.out.println(!app.inserisciVettura("AA374564BB", Vettura.TipoVettura.FURGONE,2,100,parcheggioInStrada,prezzo2));
         System.out.println(app.inserisciVettura("AB123CD", Vettura.TipoVettura.FURGONE,2,100,parcheggioInStrada,prezzo2));
 
+        Vettura auto1 = app.getVettura("KL256LP");
+        Vettura auto2 = app.getVettura("BW374PB");
+        Vettura furgone = app.getVettura("AB123CD");
+
         System.out.println("---TEST NOLEGGIO VETTURA---");
-        System.out.println(app.noleggiaVettura(app.getUtente("alessioritondo@outlook.com"),app.getVettura("KL256LP")));
-        System.out.println(!app.noleggiaVettura(app.getUtente("chiaragabriele@outlook.com"),app.getVettura("KL256LP")));
-        System.out.println(app.noleggiaVettura(app.getUtente("chiaragabriele@outlook.com"),app.getVettura("AB123CD")));
+        System.out.println(app.noleggiaVettura(alessio,auto1));
+        System.out.println(!app.noleggiaVettura(chiara,auto1));
+        System.out.println(app.noleggiaVettura(chiara,furgone));
 
         System.out.println("---TEST MAX MINUTI NOLEGGIO---");
-        System.out.println(app.getMaxMinutiNoleggio(app.getUtente("davidefiguccia2020@outlook.it"),app.getVettura("BW374PB")) == 0);
-        app.ricarica(app.getUtente("davidefiguccia2020@outlook.it"),new Importo(Locale.ITALY,new BigDecimal(10)));
-        System.out.println(app.getMaxMinutiNoleggio(app.getUtente("davidefiguccia2020@outlook.it"),app.getVettura("BW374PB")) == 20);
-        app.ricarica(app.getUtente("chiaragabriele@outlook.com"),new Importo(Locale.ITALY,new BigDecimal(2)));
-        System.out.println(app.getMaxMinutiNoleggio(app.getUtente("chiaragabriele@outlook.com"),app.getVettura("AB123CD")) == 2);
+        System.out.println(app.getMaxMinutiNoleggio(davide,auto2) == 0);
+        app.ricarica(davide,new Importo(Locale.ITALY,new BigDecimal(10)));
+        System.out.println(app.getMaxMinutiNoleggio(davide,auto2) == 20);
+        app.ricarica(chiara,new Importo(Locale.ITALY,new BigDecimal(2)));
+        System.out.println(app.getMaxMinutiNoleggio(chiara,furgone) == 2);
 
         System.out.println("---TEST PRINT STATO VETTURE---");
         app.printStatoVetture();
 
         System.out.println("---TEST PARCHEGGIO VETTURA---");
-        System.out.println(!app.parcheggiaVettura(app.getUtente("davidefiguccia2020@outlook.it"),app.getVettura("BW374PB"),parcheggioConvenzionato));
-        System.out.println(!app.parcheggiaVettura(app.getUtente("alessioritondo@outlook.com"),app.getVettura("BW374PB"),parcheggioConvenzionato));
+        System.out.println(!app.parcheggiaVettura(davide,auto2,parcheggioConvenzionato));
+        System.out.println(!app.parcheggiaVettura(alessio,auto2,parcheggioConvenzionato));
         System.out.println();
-        System.out.println(app.parcheggiaVettura(app.getUtente("alessioritondo@outlook.com"),app.getVettura("KL256LP"),parcheggioConvenzionato));
+        System.out.println(app.parcheggiaVettura(alessio,auto1,parcheggioConvenzionato));
         System.out.println(parcheggioConvenzionato.getPostiOccupati() == 1);
 
         System.out.println(!parcheggioConvenzionato.isFull());
 
-        Credito creditoChiara = app.getUtente("chiaragabriele@outlook.com").getCredito();
+        Credito creditoChiara = chiara.getCredito();
 
         System.out.println("L'utente chiaragabriele@outlook.com ha credito: "+creditoChiara.getValue()+creditoChiara.getCurrency().getSymbol());
         System.out.println("Aspetta quanto vuoi poi invia una qualunque stringa!");
         sc.nextLine();
 
-        System.out.println(app.parcheggiaVettura(app.getUtente("chiaragabriele@outlook.com"),app.getVettura("AB123CD"),parcheggioConvenzionato));
+        System.out.println(app.parcheggiaVettura(chiara,furgone,parcheggioConvenzionato));
         System.out.println(parcheggioConvenzionato.isFull());
 
         System.out.println("---TEST NOLEGGI EFFETTUATI---");
-        for(Noleggio nol : app.getUtente("chiaragabriele@outlook.com").getNoleggiEffettuati()){
+        for(Noleggio nol : chiara.getNoleggiEffettuati()){
             System.out.println(nol);
             app.noleggioPagato(nol);
             System.out.println(nol);
