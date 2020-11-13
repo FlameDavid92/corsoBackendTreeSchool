@@ -54,6 +54,8 @@ public class Main {
         System.out.println(parcheggioConvenzionato.getPostiOccupati() == 1);
 
         System.out.println(!parcheggioConvenzionato.isFull());
+
+        System.out.println("L'utente chiaragabriele@outlook.com ha credito: "+app.getUtente("chiaragabriele@outlook.com").getCredito().getValue());
         System.out.println("Aspetta quanto vuoi poi invia una qualunque stringa!");
         sc.nextLine();
         System.out.println(app.parcheggiaVettura(app.getUtente("chiaragabriele@outlook.com"),app.getVettura("AB123CD"),parcheggioConvenzionato));
@@ -67,6 +69,6 @@ public class Main {
         }
 
         System.out.println();
-        System.out.println(app.getUtente("chiaragabriele@outlook.com").getCredito().getValue());
+        System.out.println("L'utente chiaragabriele@outlook.com ha credito: "+app.getUtente("chiaragabriele@outlook.com").getCredito().getValue());
     }
 }
