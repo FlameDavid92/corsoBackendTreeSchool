@@ -6,7 +6,7 @@ import java.util.Locale;
 public class Credito extends Importo{
 
     public Credito(Locale locale) {
-        super(locale, new BigDecimal(0));
+        super(locale, new BigDecimal("0"));
     }
 
     boolean ricarica(Importo importo) {

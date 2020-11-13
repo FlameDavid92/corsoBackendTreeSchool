@@ -1,6 +1,7 @@
 package it.corsobackendtree.esercizi15.share2go.classi;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Currency;
 import java.util.Locale;
 
@@ -22,6 +23,6 @@ public class Importo {
         return currency;
     }
     public BigDecimal getValue() {
-        return value;
+        return value.setScale(2, RoundingMode.FLOOR);
     }
 }

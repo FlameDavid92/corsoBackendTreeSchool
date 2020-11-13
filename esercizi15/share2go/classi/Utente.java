@@ -1,6 +1,8 @@
 package it.corsobackendtree.esercizi15.share2go.classi;
 
-import java.math.BigDecimal;
+import it.corsobackendtree.esercizi15.share2go.classi.eccezioni.MalformedEmailException;
+import it.corsobackendtree.esercizi15.share2go.classi.eccezioni.ParcheggioPienoException;
+
 import java.util.*;
 
 public class Utente {

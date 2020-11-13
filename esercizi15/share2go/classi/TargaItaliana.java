@@ -1,5 +1,7 @@
 package it.corsobackendtree.esercizi15.share2go.classi;
 
+import it.corsobackendtree.esercizi15.share2go.classi.eccezioni.MalformedTargaException;
+
 import java.util.Objects;
 import java.util.regex.Pattern;
 

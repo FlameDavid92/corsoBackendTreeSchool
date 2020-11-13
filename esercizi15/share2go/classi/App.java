@@ -1,5 +1,9 @@
 package it.corsobackendtree.esercizi15.share2go.classi;
 
+import it.corsobackendtree.esercizi15.share2go.classi.eccezioni.MalformedEmailException;
+import it.corsobackendtree.esercizi15.share2go.classi.eccezioni.MalformedTargaException;
+import it.corsobackendtree.esercizi15.share2go.classi.eccezioni.ParcheggioPienoException;
+
 import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
