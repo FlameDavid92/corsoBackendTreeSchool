@@ -68,9 +68,9 @@ public class Main {
         facebook.iscriviUtente("Aldo","Bianchi");
 
         System.out.print((facebook.getNUtentiIscritti() == 6)+" ");
-        Utente[] ultimi3 = facebook.getUltimi3NuoviUtenti();
-        System.out.print((ultimi3[0].getNome().equals("Mario"))+" ");
-        System.out.print((ultimi3[1].getNome().equals("Paolo"))+" ");
-        System.out.print(ultimi3[2].getNome().equals("Aldo"));
+        List<Utente> ultimi3 = facebook.getUltimi3NuoviUtenti();
+        System.out.print((ultimi3.get(0).getNome().equals("Mario"))+" ");
+        System.out.print((ultimi3.get(1).getNome().equals("Paolo"))+" ");
+        System.out.print(ultimi3.get(2).getNome().equals("Aldo"));
     }
 }

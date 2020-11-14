@@ -1,17 +1,26 @@
 package it.corsobackendtree.esercizi15.facebook.classi;
 
 import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class Facebook {
     private Map<UUID,Utente> utenti;
+    private Queue<Utente> ultimi3iscritti;
 
     public Facebook(){
         utenti = new LinkedHashMap<>();
+        ultimi3iscritti = new ArrayDeque<>();
     }
 
     public Utente iscriviUtente(String nome, String cognome){
         Utente nuovoUtente = new Utente(nome,cognome);
         utenti.put(nuovoUtente.getId(),nuovoUtente);
+
+        if(ultimi3iscritti.size() > 2){
+            ultimi3iscritti.poll();
+            ultimi3iscritti.offer(nuovoUtente);
+        }else ultimi3iscritti.offer(nuovoUtente);
+
         return nuovoUtente;
     }
 
@@ -38,15 +47,16 @@ public class Facebook {
     }
 
     /*mmmmmmm.....*/
-    public Utente[] getUltimi3NuoviUtenti(){
-        Utente[] ret = new Utente[3];
+    public List<Utente> getUltimi3NuoviUtenti(){
+        /*Utente[] ret = new Utente[3];
         Set<UUID> keys = utenti.keySet();
         Iterator<UUID> it = keys.iterator();
         for(int i=0; i<utenti.size()-3; i++) it.next();
         ret[0] = utenti.get(it.next());
         ret[1] = utenti.get(it.next());
         ret[2] = utenti.get(it.next());
-        return ret;
+        return ret;*/
+        return List.copyOf(ultimi3iscritti);
     }
 
     public Utente getUtenteById(UUID idUtente){

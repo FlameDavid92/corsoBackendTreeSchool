@@ -3,7 +3,6 @@ package it.corsobackendtree.esercizi15.share2go;
 import it.corsobackendtree.esercizi15.share2go.classi.*;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Locale;
 import java.util.Scanner;
 
