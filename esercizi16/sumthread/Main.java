@@ -11,8 +11,14 @@ public class Main {
         int[] interi = new int[dim];
         stream.forEach(i -> interi[i] = (random.nextInt(21)-10));
 
-        System.out.println("--Inizio Parallelo1--");
+        System.out.println("--Inizio sequenziale--");
         long startTime = System.currentTimeMillis();
+        int seqSum = sequential(interi);
+        long seqMillis = System.currentTimeMillis() - startTime;
+        System.out.println("--Sequenziale terminato--");
+
+        System.out.println("--Inizio Parallelo1--");
+        startTime = System.currentTimeMillis();
         int parSum1 = parallel1(interi);
         long par1Millis = System.currentTimeMillis() - startTime;
         System.out.println("--Parallelo1 terminato--");
@@ -23,17 +29,25 @@ public class Main {
         long par2Millis = System.currentTimeMillis() - startTime;
         System.out.println("--Parallelo2 terminato--");
 
-        System.out.println("--Inizio sequenziale--");
+        System.out.println("--Inizio Parallelo3--");
         startTime = System.currentTimeMillis();
-        int seqSum = sequential(interi);
-        long seqMillis = System.currentTimeMillis() - startTime;
-        System.out.println("--Sequenziale terminato--");
+        int parSum3 = parallel3(interi);
+        long par3Millis = System.currentTimeMillis() - startTime;
+        System.out.println("--Parallelo3 terminato--");
 
+        System.out.println("Tempo sequenziale: "+seqMillis+" millisecondi.");
         System.out.println("Tempo parallelo1: "+par1Millis+" millisecondi.");
         System.out.println("Tempo parallelo2: "+par2Millis+" millisecondi.");
-        System.out.println("Tempo sequenziale: "+seqMillis+" millisecondi.");
+        System.out.println("Tempo parallelo3: "+par3Millis+" millisecondi.");
 
-        System.out.println("TEST CORRETTEZZA: "+((parSum1==parSum2)&&(parSum2 == seqSum)));
+        System.out.println("TEST CORRETTEZZA: "+(((parSum1==parSum2&&(parSum2==parSum3))&&(parSum3 == seqSum))));
+        System.out.println(parSum1);
+    }
+
+    public static int sequential(int[] interi){
+        SumThread st1 = new SumThread(interi, 0,interi.length);
+        st1.run();
+        return st1.getSum();
     }
 
     public static int parallel1(int[] interi){
@@ -72,9 +86,19 @@ public class Main {
         return st1.getSum()+st2.getSum()+st3.getSum()+st4.getSum();
     }
 
-    public static int sequential(int[] interi){
-        SumThread st1 = new SumThread(interi, 0,interi.length);
-        st1.run();
-        return st1.getSum();
+    public static int parallel3(int[] interi){
+        int length = interi.length;
+        UtilThread ut1 = new UtilThread(true,interi);
+        UtilThread ut2 = new UtilThread(false,interi);
+
+        ut1.start();
+        ut2.start();
+        try {
+            ut1.join();
+            ut2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return ut1.getSum()+ut2.getSum();
     }
 }
