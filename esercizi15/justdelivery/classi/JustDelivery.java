@@ -50,7 +50,7 @@ public class JustDelivery {
     public Set<Ristorante> getRistorantiPerCucina(Ristorante.TipoCucina tipoCucina){
         return ristoranti.values().stream().filter(r->r.getTipoCucina().equals(tipoCucina)).collect(Collectors.toSet());
     }
-
+    
     public Ristorante getNewRistoranteOfPrefType(Utente utente){
         Ristorante.TipoCucina tipoPreferito = utente.getPrefTipoCucina();
         for(Ristorante risto : ristoranti.values()){
