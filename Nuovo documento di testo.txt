@@ -1,2 +1,0 @@
-.gitignore
-/corsobackendtree/esercizi16/gutenberganalyzer/books
