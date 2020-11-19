@@ -2,8 +2,6 @@ package it.corsobackendtree.esercizi16.gutenberganalyzer;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Set;
 import java.util.concurrent.Callable;
 
 
@@ -42,7 +40,6 @@ public class ContaLettereLibroThread implements Callable<long[]> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //System.out.println(Arrays.toString(letterCounters));
         return letterCounters;
     }
 }
