@@ -31,6 +31,7 @@ public class CovidFileJob implements Runnable {
                 while ((line = br.readLine()) != null) {
                     pool.submit(new AnalizzaUtenteJob(line,writer));
                 }
+                br.close();
             }catch(IOException e){
                 e.printStackTrace();
             }
