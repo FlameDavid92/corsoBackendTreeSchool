@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -17,13 +16,17 @@ public class GutenbergAnalyzer {
         Set<String> files = listFilesUsingFileWalk(booksDirectory,1);
         ExecutorService pool = Executors.newFixedThreadPool(5);
 
-        ArrayList<Future<long[]>> futures = new ArrayList<>();
-
         if(files != null){
-            for(String fileName : files){
-                futures.add(pool.submit(new ContaLettereLibroJob(booksDirectory+fileName)));
-            }
 
+            HashSet<Integer> indiciThreads = new HashSet<>();
+            IntStream.range(0, files.size()).forEach(ind-> indiciThreads.add(ind));
+            Set<Integer> syncSet = Collections.synchronizedSet(indiciThreads);
+
+            int i=0;
+            for(String fileName : files){
+                pool.submit(new ContaLettereLibroThread(i,booksDirectory+fileName, fileName, syncSet));
+                i++;
+            }
             pool.shutdown();
             try {
                 pool.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
@@ -31,27 +34,6 @@ public class GutenbergAnalyzer {
                 e.printStackTrace();
             }
         }
-
-
-        IntStream stream = IntStream.range(0, futures.size());
-        stream.forEach(ind -> {
-            if(futures.get(ind).isDone()){
-                System.out.println(ind + "completed.");
-                /*try {
-                    System.out.println(Arrays.toString(futures.get(ind).get()));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }*/
-            }
-        });
-        //ArrayList<long[]>
-        IntStream stream2 = IntStream.range(0, futures.size());
-        IntStream stream3 = IntStream.range(0, futures.size());
-
-
-
     }
 
     public static Set<String> listFilesUsingFileWalk(String dir, int depth){
