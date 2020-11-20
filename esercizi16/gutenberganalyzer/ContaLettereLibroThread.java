@@ -4,10 +4,10 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ContaLettereLibroThread implements Runnable {
-    private String filePath;
-    private String fileName;
-    private long[] letterCounters;
-    private GestoreClassifiche gestoreClassifiche;
+    private final String filePath;
+    private final String fileName;
+    private final long[] letterCounters;
+    private final GestoreClassifiche gestoreClassifiche;
 
     public ContaLettereLibroThread(String filePath, String fileName, GestoreClassifiche gestoreClassifiche){
         this.filePath = filePath;
