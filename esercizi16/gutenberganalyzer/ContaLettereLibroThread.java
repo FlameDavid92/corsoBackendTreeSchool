@@ -2,18 +2,14 @@ package it.corsobackendtree.esercizi16.gutenberganalyzer;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.concurrent.Callable;
-
 
 public class ContaLettereLibroThread implements Runnable {
-    private int index;
     private String filePath;
     private String fileName;
     private long[] letterCounters;
     private GestoreClassifiche gestoreClassifiche;
 
-    public ContaLettereLibroThread(int index, String filePath, String fileName, GestoreClassifiche gestoreClassifiche){
-        this.index = index;
+    public ContaLettereLibroThread(String filePath, String fileName, GestoreClassifiche gestoreClassifiche){
         this.filePath = filePath;
         this.fileName = fileName;
         letterCounters = new long[26];

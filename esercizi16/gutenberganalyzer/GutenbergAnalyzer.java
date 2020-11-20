@@ -22,7 +22,7 @@ public class GutenbergAnalyzer {
             int i = 0;
             ContaLettereLibroThread temp;
             for (String fileName : filesName) {
-                temp = new ContaLettereLibroThread(i, booksDirectory + fileName, fileName, gestoreClassifiche);
+                temp = new ContaLettereLibroThread(booksDirectory + fileName, fileName, gestoreClassifiche);
                 pool.submit(temp);
                 i++;
             }

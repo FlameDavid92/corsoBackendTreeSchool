@@ -1,8 +1,6 @@
 package it.corsobackendtree.esercizi16.gutenberganalyzer;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.TreeMap;
 
 public class GestoreClassifiche {
     private final HashSet<MyBook> classifiche;
