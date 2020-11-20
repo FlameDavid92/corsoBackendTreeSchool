@@ -4,8 +4,8 @@ import java.util.Objects;
 import java.util.TreeMap;
 
 public class MyBook {
-    private String fileName;
-    private long[] letterCounters;
+    private final String fileName;
+    private final long[] letterCounters;
     private final TreeMap<Double, String> classifica;
 
     public MyBook(String fileName, long[] letterCounters){
