@@ -36,11 +36,11 @@ public class GutenbergAnalyzer {
             }
 
             /*STAMPA CLASSIFICHE*/
-            HashMap<MyBook,TreeMap<Double, String>> classifiche = gestoreClassifiche.getClassifiche();
-            for(Map.Entry<MyBook,TreeMap<Double, String>> entry : classifiche.entrySet()){
-                System.out.println(entry.getKey()+":");
-                for(Map.Entry<Double, String> libro : entry.getValue().entrySet()){
-                    System.out.println("    "+libro.getValue()+" -- "+libro.getKey());
+            HashSet<MyBook> classifiche = gestoreClassifiche.getClassifiche();
+            for(MyBook libro : classifiche){
+                System.out.println(libro.getFileName()+":");
+                for(Map.Entry<Double, String> libroInClassifica : libro.getClassifica().entrySet()){
+                    System.out.println("    "+libroInClassifica.getValue()+" -- "+libroInClassifica.getKey());
                 }
                 System.out.println();
             }
