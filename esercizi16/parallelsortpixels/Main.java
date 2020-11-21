@@ -23,9 +23,9 @@ public class Main {
         testParallelSortPixelsAndreaRosati(inputImage,outputImage);
         System.out.println("-----------------");
         System.out.println("Mie soluzioni:");
-        testParallelSortPixelsDavideFigucciaMergesortParallelo(inputImage,outputImage,0);
-        testParallelSortPixelsDavideFigucciaMergesortParallelo(inputImage,outputImage,1);
-        testParallelSortPixelsDavideFigucciaMergesortParallelo(inputImage,outputImage,2);
+        testSortPixelsDavideFiguccia(inputImage,outputImage,0); /*Mergesort parallelo*/
+        testSortPixelsDavideFiguccia(inputImage,outputImage,1); /*Arrays.parallelSort*/
+        testSortPixelsDavideFiguccia(inputImage,outputImage,2); /*Arrays.sort (sequenziale)*/
 
         System.out.println("\n**I tempi non includono la scrittura dell'immagine né l'inizializzazione dell'inputImage e outputImage.");
     }
@@ -50,7 +50,7 @@ public class Main {
         }
     }
 
-    private static void testParallelSortPixelsDavideFigucciaMergesortParallelo(BufferedImage inputImage, BufferedImage outputImage, int op){
+    private static void testSortPixelsDavideFiguccia(BufferedImage inputImage, BufferedImage outputImage, int op){
         /*Crea array di MyColor*/
         long startTime = System.currentTimeMillis();
         MyColor[] imageToSort = new MyColor[inputImage.getWidth() * inputImage.getHeight()];
