@@ -1,5 +1,6 @@
 package it.corsobackendtree.esercizi16.parallelsortpixels;
 
+import it.corsobackendtree.esercizi16.parallelsortpixels.sortingpixelsandrearosati.soluzione.ThreadPixelSorter;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,7 +19,40 @@ public class Main {
         }
         BufferedImage outputImage = new BufferedImage(inputImage.getWidth(), inputImage.getHeight(), BufferedImage.TYPE_4BYTE_ABGR); // creazione immagine output
 
+        System.out.println("Soluzione ANDREA ROSATI:");
+        testParallelSortPixelsAndreaRosati(inputImage,outputImage);
+        System.out.println("-----------------");
+        System.out.println("Mie soluzioni:");
+        testParallelSortPixelsDavideFigucciaMergesortParallelo(inputImage,outputImage,0);
+        testParallelSortPixelsDavideFigucciaMergesortParallelo(inputImage,outputImage,1);
+        testParallelSortPixelsDavideFigucciaMergesortParallelo(inputImage,outputImage,2);
+
+        System.out.println("\n**I tempi non includono la scrittura dell'immagine né l'inizializzazione dell'inputImage e outputImage.");
+    }
+
+    private static void testParallelSortPixelsAndreaRosati(BufferedImage inputImage, BufferedImage outputImage){
+        long startTime = System.currentTimeMillis();
+
+        ThreadPixelSorter tps = new ThreadPixelSorter(inputImage, outputImage);
+
+        tps.start();
+        try {
+            tps.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Tempo: "+(System.currentTimeMillis() - startTime));
+
+        try {
+            ImageIO.write(outputImage, "png", new File("./it/corsobackendtree/esercizi16/parallelsortpixels/outputImage.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void testParallelSortPixelsDavideFigucciaMergesortParallelo(BufferedImage inputImage, BufferedImage outputImage, int op){
         /*Crea array di MyColor*/
+        long startTime = System.currentTimeMillis();
         MyColor[] imageToSort = new MyColor[inputImage.getWidth() * inputImage.getHeight()];
         int k = 0;
         for (int i = 0; i < inputImage.getWidth(); i++) {
@@ -28,9 +62,24 @@ public class Main {
         }
 
         /*Ordina array*/
-        ordinamParMyParMergesort(imageToSort);
-        //ordinamParJava(imageToSort);
-        //ordinamSeqJava(imageToSort);
+        switch(op){
+            case 0:
+                final ForkJoinPool forkJoinPool = new ForkJoinPool(Runtime.getRuntime().availableProcessors() - 1);
+                forkJoinPool.invoke(new ParallelMergeSortMyColor(imageToSort, 0, imageToSort.length - 1));
+                System.out.println("Ordinamento su copia dell'immagine in array di MyColor -> con ParallelMergeSortMyColor.");
+                break;
+            case 1:
+                Arrays.parallelSort(imageToSort); //ordinamento parallelo
+                System.out.println("Ordinamento su copia dell'immagine in array di MyColor -> con Arrays.parallelSort.");
+                break;
+            case 2:
+                Arrays.sort(imageToSort); //ordinamento sequenziale
+                System.out.println("Ordinamento su copia dell'immagine in array di MyColor -> con Arrays.sort.");
+                break;
+            default:
+                System.out.println("op in input non riconosiuta!");
+                return;
+        }
 
         /*Utilizza l'array per settare i colori dell'immagine in output*/
         k=0;
@@ -39,6 +88,7 @@ public class Main {
                 outputImage.setRGB(i, j, imageToSort[k++].getColor().getRGB());
             }
         }
+        System.out.println("Tempo: "+(System.currentTimeMillis() - startTime)+" millisecondi.\n");
 
         /*Scrivi immagine*/
         try {
@@ -46,24 +96,5 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private static void ordinamSeqJava(MyColor[] imageToSort){
-        long startTime = System.currentTimeMillis();
-        Arrays.sort(imageToSort); //ordinamento sequenziale
-        System.out.println("Ordinamento sequenziale (Arrays.sort): "+(System.currentTimeMillis() - startTime)+" millisecondi.");
-    }
-
-    private static void ordinamParJava(MyColor[] imageToSort){
-        long startTime = System.currentTimeMillis();
-        Arrays.parallelSort(imageToSort); //ordinamento parallelo
-        System.out.println("Ordinamento parallelo (Arrays.parallelSort): "+(System.currentTimeMillis() - startTime)+" millisecondi.");
-    }
-
-    private static void ordinamParMyParMergesort(MyColor[] imageToSort){
-        long startTime = System.currentTimeMillis();
-        final ForkJoinPool forkJoinPool = new ForkJoinPool(Runtime.getRuntime().availableProcessors() - 1);
-        forkJoinPool.invoke(new ParallelMergeSortMyColor(imageToSort, 0, imageToSort.length - 1));
-        System.out.println("Ordinamento parallelo (ParallelMergesortMyColor): "+(System.currentTimeMillis() - startTime)+" millisecondi.");
     }
 }
