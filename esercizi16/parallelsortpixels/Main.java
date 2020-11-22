@@ -26,7 +26,6 @@ public class Main {
         testSortPixelsDavideFiguccia(inputImage,outputImage,0); /*Mergesort parallelo*/
         testSortPixelsDavideFiguccia(inputImage,outputImage,1); /*Arrays.parallelSort*/
         testSortPixelsDavideFiguccia(inputImage,outputImage,2); /*Arrays.sort (sequenziale)*/
-
         System.out.println("\n**I tempi non includono la scrittura dell'immagine né l'inizializzazione dell'inputImage e outputImage.");
     }
 
