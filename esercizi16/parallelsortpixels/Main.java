@@ -17,16 +17,18 @@ public class Main {
             inputImage = ImageIO.read(new File("./it/corsobackendtree/esercizi16/parallelsortpixels/gris.png")); //caricamento immagine
         } catch (IOException e) {
         }
-        BufferedImage outputImage = new BufferedImage(inputImage.getWidth(), inputImage.getHeight(), BufferedImage.TYPE_4BYTE_ABGR); // creazione immagine output
+        if(inputImage != null){
+            BufferedImage outputImage = new BufferedImage(inputImage.getWidth(), inputImage.getHeight(), BufferedImage.TYPE_4BYTE_ABGR); // creazione immagine output
 
-        System.out.println("Soluzione ANDREA ROSATI:");
-        testParallelSortPixelsAndreaRosati(inputImage,outputImage);
-        System.out.println("-----------------");
-        System.out.println("Mie soluzioni:");
-        testSortPixelsDavideFiguccia(inputImage,outputImage,0); /*Mergesort parallelo*/
-        testSortPixelsDavideFiguccia(inputImage,outputImage,1); /*Arrays.parallelSort*/
-        testSortPixelsDavideFiguccia(inputImage,outputImage,2); /*Arrays.sort (sequenziale)*/
-        System.out.println("\n**I tempi non includono la scrittura dell'immagine né l'inizializzazione dell'inputImage e outputImage.");
+            System.out.println("Soluzione ANDREA ROSATI:");
+            testParallelSortPixelsAndreaRosati(inputImage,outputImage);
+            System.out.println("-----------------");
+            System.out.println("Mie soluzioni:");
+            testSortPixelsDavideFiguccia(inputImage,outputImage,0); /*Mergesort parallelo*/
+            testSortPixelsDavideFiguccia(inputImage,outputImage,1); /*Arrays.parallelSort*/
+            testSortPixelsDavideFiguccia(inputImage,outputImage,2); /*Arrays.sort (sequenziale)*/
+            System.out.println("\n**I tempi non includono la scrittura dell'immagine né l'inizializzazione dell'inputImage e outputImage.");
+        }
     }
 
     private static void testParallelSortPixelsAndreaRosati(BufferedImage inputImage, BufferedImage outputImage){
