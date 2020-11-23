@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 public class CivilRegistry {
     private Set<Persona> persone;
-    public static CivilRegistry instance = null;
+    private static CivilRegistry instance = null;
 
     public static CivilRegistry getInstance() {
         if(instance == null) instance = new CivilRegistry();
@@ -14,6 +14,7 @@ public class CivilRegistry {
     }
 
     private CivilRegistry(){
+        /* Per un'ipotetica gestione multithread...*/
         persone = Collections.synchronizedSet(new HashSet<>());
     }
 
