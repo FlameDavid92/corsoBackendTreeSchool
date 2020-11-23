@@ -7,6 +7,7 @@ public class ArcadeRank {
     private static ArcadeRank instance = null;
     private final HashMap<UUID,Utente> utenti;
     private final HashMap<UUID,Videogioco> videogiochi;
+    private final LinkedList<Partita> partite;
 
     /* È una ripetizione di dati evitabile poiché potrebbe essere ricalcolata ogni volta dalle singole classifiche dei videogiochi,
     * ma la volevo fare così :P */
@@ -21,6 +22,7 @@ public class ArcadeRank {
         utenti = new HashMap<>();
         videogiochi = new HashMap<>();
         punteggiGenerali = new HashMap<>();
+        partite = new LinkedList<>();
     }
 
     public Utente inserisciUtente(String username){
@@ -30,10 +32,18 @@ public class ArcadeRank {
         return nuovoUtente;
     }
 
+    public Utente getUtente(UUID idUtente){
+        return utenti.get(idUtente);
+    }
+
     public Videogioco inserisciVideogioco(String nome, Difficolta difficolta){
         Videogioco nuovoVideogioco = new Videogioco(nome, difficolta);
         videogiochi.put(nuovoVideogioco.getId(),nuovoVideogioco);
         return nuovoVideogioco;
+    }
+
+    public Videogioco getVideogioco(UUID idVideogioco){
+        return videogiochi.get(idVideogioco);
     }
 
     public boolean inserisciPartita(UUID idUtente, UUID idVideogioco, int punteggio){
@@ -45,11 +55,16 @@ public class ArcadeRank {
                 /*aggiorna classifica generale*/
                 punteggiGenerali.put(idUtente, (punteggiGenerali.get(idUtente) - puntiArr[0]) + puntiArr[1]);
             }
-            return true;
+            partite.addFirst(new Partita(idUtente,idVideogioco,punteggio));
+            return false; /*Il punteggio ottenuto in questa partita non è il migliore ottenuto dall'utente!*/
         }else{
             System.out.println("Utente o videogioco non presenti!");
             return false;
         }
+    }
+
+    public List<Partita> getUltimeNPartite(int n){
+        return partite.stream().limit(n).collect(Collectors.toList());
     }
 
     public void printClassificaVideogioco(UUID idVideogioco){
@@ -71,4 +86,9 @@ public class ArcadeRank {
         return punteggiGenerali.entrySet().stream().sorted((a,b) -> b.getValue().compareTo(a.getValue()))
                 .limit(3).map(e -> new ClassificaItem(e.getKey(),e.getValue())).collect(Collectors.toList());
     }
+
+    /*Senza utilizzare la mappa punteggiGenerali*/
+    /*public void printClassificaGenerale2(){
+        utenti.values().stream().flatMap(u -> videogiochi.values().stream().reduce(0,(a,b)-> a.))
+    }*/
 }

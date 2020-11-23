@@ -7,7 +7,6 @@ import it.corsobackendtree.esercizi17.arcaderank.classi.Videogioco;
 
 public class Main {
     public static void main(String[] args) {
-
         ArcadeRank ar = ArcadeRank.getInstance();
         Utente flamedavid92 = ar.inserisciUtente("flamedavid92");
         Utente pippo = ar.inserisciUtente("pippo");
@@ -29,19 +28,34 @@ public class Main {
         ar.inserisciPartita(pluto.getId(),pacman.getId(),200);
         System.out.println("topolino gioca a PacMan e fa 100 punti.");
         ar.inserisciPartita(topolino.getId(),pacman.getId(),100);
-        System.out.println("pippo gioca a PacMan e fa 250 punti.\n");
+        System.out.println("pippo gioca a PacMan e fa 250 punti.");
         ar.inserisciPartita(pippo.getId(),pacman.getId(),250);
+
+        System.out.println("\nUltime 3 Partite:");
+        ar.getUltimeNPartite(3)
+                .forEach(p-> System.out.println("   "+ar.getUtente(p.getIdUtente()).getUsername()+ " "+
+                        ar.getVideogioco(p.getIdVideogioco())+" "+p.getPunteggio()));
+        System.out.println();
 
         System.out.println("CLASSIFICA VIDEOGIOCO PAC-MAN:");
         ar.printClassificaVideogioco(pacman.getId());
         System.out.println("------");
         System.out.println("CLASSIFICA GENERALE");
         ar.printClassificaGenerale();
+
         System.out.println("------");
         System.out.println("------");
+
         System.out.println("\nGIORNO2:");
         System.out.println("flamedavid92 gioca a MetalSlug e fa 200 punti.\n");
         ar.inserisciPartita(flamedavid92.getId(),metalSlug.getId(),200);
+
+        System.out.println("\nUltime 3 Partite:");
+        ar.getUltimeNPartite(3)
+                .forEach(p-> System.out.println("   "+ar.getUtente(p.getIdUtente()).getUsername()+ " "+
+                        ar.getVideogioco(p.getIdVideogioco())+" "+p.getPunteggio()));
+        System.out.println();
+
         System.out.println("CLASSIFICA VIDEOGIOCO PAC-MAN:");
         ar.printClassificaVideogioco(pacman.getId());
         System.out.println("------");
