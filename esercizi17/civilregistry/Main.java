@@ -5,6 +5,8 @@ import it.corsobackendtree.esercizi17.civilregistry.classi.CodiceFiscaleItaliano
 import it.corsobackendtree.esercizi17.civilregistry.classi.Indirizzo;
 import it.corsobackendtree.esercizi17.civilregistry.classi.Persona;
 
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         CivilRegistry cr = CivilRegistry.getInstance();
@@ -41,12 +43,12 @@ public class Main {
         }
         Indirizzo indirizzoBello = new Indirizzo("Via bellissima",0,"Bella");
 
-        Persona davide = new Persona(cfDavide,"Davide","Figuccia",28, indirizzoDavide);
-        Persona davide2 = new Persona(cfBello,"Davide","Rossi",70, indirizzoBello);
-        Persona davide3 = new Persona(cfBello2,"Davide","Bianchi",35, indirizzoDavide3);
-        Persona sofia = new Persona(cfSofia, "Sofia", "Bianchi", 6, indirizzoDavide3);
-        Persona lucia = new Persona(cfBello3, "Lucia", "Luce", 72, indirizzoBello);
-        Persona mario = new Persona(cfBello4,"Mario","Verdi",35, indirizzoBello);
+        Persona davide = new Persona(cfDavide,"Davide","Figuccia", LocalDate.of(1992,9,22), indirizzoDavide);
+        Persona davide2 = new Persona(cfBello,"Davide","Rossi",LocalDate.of(1950,1,1), indirizzoBello);
+        Persona davide3 = new Persona(cfBello2,"Davide","Bianchi",LocalDate.of(1985,5,20), indirizzoDavide3);
+        Persona sofia = new Persona(cfSofia, "Sofia", "Bianchi", LocalDate.of(2014,1,1), indirizzoDavide3);
+        Persona lucia = new Persona(cfBello3, "Lucia", "Luce", LocalDate.of(1948,1,1), indirizzoBello);
+        Persona mario = new Persona(cfBello4,"Mario","Verdi",LocalDate.of(1985,2,25), indirizzoBello);
         davide3.aggiungiFiglio(sofia);
         davide2.aggiungiFiglio(mario);
         cr.inserisciPersona(davide);

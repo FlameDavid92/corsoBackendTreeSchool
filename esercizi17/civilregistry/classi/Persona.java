@@ -1,20 +1,21 @@
 package it.corsobackendtree.esercizi17.civilregistry.classi;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Persona {
-    private CodiceFiscaleItaliano codiceFiscale;
-    private String nome;
-    private String cognome;
-    private int eta;
-    private Indirizzo residenza;
+    private final CodiceFiscaleItaliano codiceFiscale;
+    private final String nome;
+    private final String cognome;
+    private final LocalDate nascita;
+    private final Indirizzo residenza;
     protected List<Persona> figli;
 
-    public Persona(CodiceFiscaleItaliano codiceFiscale, String nome, String cognome, int eta, Indirizzo residenza){
+    public Persona(CodiceFiscaleItaliano codiceFiscale, String nome, String cognome, LocalDate nascita, Indirizzo residenza){
         this.nome = nome;
         this.cognome = cognome;
-        this.eta = eta;
+        this.nascita = nascita;
         this.codiceFiscale = codiceFiscale;
         this.residenza = residenza;
         figli = new LinkedList<>();
@@ -36,8 +37,8 @@ public class Persona {
         return cognome;
     }
 
-    public int getEta() {
-        return eta;
+    public LocalDate getNascita() {
+        return nascita;
     }
 
     public CodiceFiscaleItaliano getCodiceFiscale() {
@@ -63,6 +64,6 @@ public class Persona {
 
     @Override
     public String toString() {
-        return nome+" "+cognome+" ("+eta+")";
+        return nome+" "+cognome+" "+nascita;
     }
 }

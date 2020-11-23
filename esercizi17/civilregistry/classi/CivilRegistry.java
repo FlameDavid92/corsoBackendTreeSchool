@@ -34,7 +34,7 @@ public class CivilRegistry {
     }
 
     public List<Persona> getTrePiuAnziani(){
-        return persone.stream().parallel().sorted(Comparator.comparingInt(Persona::getEta).reversed()).limit(3).collect(Collectors.toList());
+        return persone.stream().parallel().sorted(Comparator.comparing(Persona::getNascita)).limit(3).collect(Collectors.toList());
     }
 
     public List<Indirizzo> getIndirizzi(String nomePersona){
