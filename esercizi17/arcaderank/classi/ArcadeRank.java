@@ -86,9 +86,4 @@ public class ArcadeRank {
         return punteggiGenerali.entrySet().stream().sorted((a,b) -> b.getValue().compareTo(a.getValue()))
                 .limit(3).map(e -> new ClassificaItem(e.getKey(),e.getValue())).collect(Collectors.toList());
     }
-
-    /*Senza utilizzare la mappa punteggiGenerali*/
-    /*public void printClassificaGenerale2(){
-        utenti.values().stream().flatMap(u -> videogiochi.values().stream().reduce(0,(a,b)-> a.))
-    }*/
 }
