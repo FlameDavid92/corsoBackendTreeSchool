@@ -5,9 +5,13 @@ import java.util.UUID;
 
 public class Prodotto {
     private final UUID id;
-    private final String nome;
+    private String nome;
     private int quantitaDisponibile;
-    private final double prezzo;
+    private double prezzo;
+
+    public Prodotto(){
+        id = UUID.randomUUID();
+    }
 
     public Prodotto(String nome, int quantita, double prezzo) {
         id = UUID.randomUUID();

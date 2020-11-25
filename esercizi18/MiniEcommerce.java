@@ -26,24 +26,33 @@ public class MiniEcommerce {
     }
 
     private static void aggiungiProdotto(){
-        /*controllo se prodotto già presente!*/
         post("/prodotti/add", (req,res) -> {
             Prodotto nuovoProdotto = gson.fromJson(req.body(),Prodotto.class);
-            //prodotti.values().stream().findAny();
-            prodotti.put(nuovoProdotto.getId(),nuovoProdotto);
-            res.status(201);
-            res.type("application/json");
-            return "Prodotto aggiunto!";
+            Prodotto pr = prodotti.values().stream()
+                    .filter(p -> nuovoProdotto.getNome().toLowerCase().equals(p.getNome().toLowerCase()))
+                    .findAny()
+                    .orElse(null);
+            if(pr == null){
+                prodotti.put(nuovoProdotto.getId(),nuovoProdotto);
+                res.status(201);
+                res.type("text/html");
+                return "Prodotto aggiunto!";
+            }else{
+                res.status(400);
+                res.type("text/html");
+                return "<b>Nome</b> prodotto già presente!";
+            }
         });
     }
     private static void eliminaProdotto(){
         delete("/prodotti/remove", (req,res) -> {
             if(prodotti.remove(UUID.fromString(req.queryMap().get("id").value())) != null){
                 res.status(200);
-                res.type("application/json");
+                res.type("text/html");
                 return "Prodotto eliminato!";
             }else{
                 res.status(404);
+                res.type("text/html");
                 return "Prodotto non presente!";
             }
         });
@@ -55,9 +64,11 @@ public class MiniEcommerce {
             List<Prodotto> ret = prodotti.values().stream().filter(p -> p.getQuantitaDisponibile() > 0).collect(Collectors.toList());
             if(ret.size() > 0) {
                 res.status(200);
+                res.type("application/json");
                 return gson.toJson(ret);
             }
             res.status(200);
+            res.type("text/html");
             return "Non ci sono prodotti disponibili!";
         });
     }
@@ -71,18 +82,21 @@ public class MiniEcommerce {
                     quantita = Integer.parseInt(req.queryMap().get("quantita").value());
                 }catch(NumberFormatException e){
                     res.status(400);
+                    res.type("text/html");
                     return "Formato richiesta non corretto!";
                 }
                 if(pr.acquisto(quantita)){
                     res.status(201);
-                    res.type("application/json");
+                    res.type("text/html");
                     return "Acquisto completato!";
                 }else{
                     res.status(400);
+                    res.type("text/html");
                     return "Quantità non disponibile!";
                 }
             }else{
                 res.status(404);
+                res.type("text/html");
                 return "Prodotto non trovato!";
             }
         });
