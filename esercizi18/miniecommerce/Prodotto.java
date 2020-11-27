@@ -1,4 +1,4 @@
-package it.corsobackendtree.esercizi18;
+package it.corsobackendtree.esercizi18.miniecommerce;
 
 import java.util.Objects;
 import java.util.UUID;

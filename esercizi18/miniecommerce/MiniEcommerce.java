@@ -1,4 +1,4 @@
-package it.corsobackendtree.esercizi18;
+package it.corsobackendtree.esercizi18.miniecommerce;
 
 import com.google.gson.Gson;
 
